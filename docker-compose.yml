@@ -89,6 +89,18 @@ services:
       n8n-import:
         condition: service_completed_successfully
 
+  youtube-analyzer:
+    profiles: ["tools"]
+    build: ./youtube-analyzer
+    container_name: youtube-analyzer
+    networks: ['demo']
+    volumes:
+      - ./shared:/data/shared
+    working_dir: /app
+    # run with:
+    #   docker compose run --rm youtube-analyzer "<youtube url>" -o /data/shared/youtube
+    # results appear in ./shared/youtube on the host and /data/shared/youtube inside n8n
+
   qdrant:
     image: qdrant/qdrant
     container_name: qdrant
