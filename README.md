@@ -196,6 +196,23 @@ interact with the local filesystem.
 - [Local File Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.localfiletrigger/)
 - [Execute Command](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.executecommand/)
 
+### Analyzing YouTube videos
+
+The kit includes a [YouTube Analyzer](youtube-analyzer/README.md) tool: give it
+any YouTube link — a single video, a playlist, a channel, or a search query —
+and it goes video by video extracting the transcript, frame screenshots, the
+watch-page source code, and metadata into `./shared/youtube`, where your n8n
+workflows can pick them up (summarize with Ollama, index into Qdrant, etc.):
+
+```bash
+docker compose --profile tools build youtube-analyzer
+docker compose run --rm youtube-analyzer \
+  "https://www.youtube.com/watch?v=..." -o /data/shared/youtube
+```
+
+See [youtube-analyzer/README.md](youtube-analyzer/README.md) for playlists,
+channels, search, and all options.
+
 ## 📜 License
 
 This project is licensed under the Apache License 2.0 - see the
