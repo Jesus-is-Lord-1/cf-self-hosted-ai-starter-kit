@@ -1,0 +1,6 @@
+# Runtime shared folder mounted into the n8n container
+shared/
+
+# OS cruft
+.DS_Store
+Thumbs.db

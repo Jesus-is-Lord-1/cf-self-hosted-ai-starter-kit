@@ -20,7 +20,7 @@ integrations and advanced AI components
 and run the latest local LLMs
 
 ✅ [**Qdrant**](https://qdrant.tech/) - Open-source, high performance vector
-store with an comprehensive API
+store with a comprehensive API
 
 ✅ [**PostgreSQL**](https://www.postgresql.org/) -  Workhorse of the Data
 Engineering world, handles large amounts of data safely.
@@ -44,6 +44,16 @@ git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
 cd self-hosted-ai-starter-kit
 ```
 
+### Configuring your environment
+
+The kit ships with a `.env` file containing placeholder values so it works out
+of the box for local experimentation.
+
+> [!IMPORTANT]
+> Before using this kit anywhere beyond a throwaway local demo, edit `.env`
+> and replace `POSTGRES_PASSWORD`, `N8N_ENCRYPTION_KEY`, and
+> `N8N_USER_MANAGEMENT_JWT_SECRET` with your own secure values.
+
 ### Running n8n using Docker Compose
 
 #### For Nvidia GPU users
@@ -57,6 +67,14 @@ docker compose --profile gpu-nvidia up
 > [!NOTE]
 > If you have not used your Nvidia GPU with Docker before, please follow the
 > [Ollama Docker instructions](https://github.com/ollama/ollama/blob/main/docs/docker.md).
+
+#### For AMD GPU users on Linux
+
+```
+git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
+cd self-hosted-ai-starter-kit
+docker compose --profile gpu-amd up
+```
 
 #### For Mac / Apple Silicon users
 
@@ -121,21 +139,28 @@ language model and Qdrant as your vector store.
 
 ## Upgrading
 
-* ### For Nvidia GPU setups:
+### For Nvidia GPU setups
 
 ```bash
 docker compose --profile gpu-nvidia pull
 docker compose create && docker compose --profile gpu-nvidia up
 ```
 
+### For AMD GPU setups on Linux
+
+```bash
+docker compose --profile gpu-amd pull
+docker compose create && docker compose --profile gpu-amd up
+```
+
 ### For Mac / Apple Silicon users
 
-```
+```bash
 docker compose pull
 docker compose create && docker compose up
 ```
 
-* ### For Non-GPU setups:
+### For Non-GPU setups
 
 ```bash
 docker compose --profile cpu pull
