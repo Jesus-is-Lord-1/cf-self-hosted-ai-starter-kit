@@ -1,0 +1,282 @@
+<title>Strategy &amp; Returns — 170 Michaela Dr</title>
+<style>
+  :root{
+    --paper:#F4F5F1; --surface:#FCFCFA; --ink:#1C2B24; --ink2:#4A5A52; --muted:#7C8880;
+    --brass:#8C6A2B; --brass-big:#A87E2F; --rule:#DDE2DA; --grid:#E3E7DF;
+    --s-blue:#2a78d6; --s-brass:#A87E2F; --good:#006300; --goodbg:#E8F3EC; --crit:#B03030; --critbg:#F9ECEA;
+    --band:#EBEEE7; --warnbg:#F7EFE2;
+  }
+  @media (prefers-color-scheme: dark){ :root{
+    --paper:#141A16; --surface:#1C231E; --ink:#E9ECE5; --ink2:#AAB4AB; --muted:#828C84;
+    --brass:#C9A45C; --brass-big:#C9A45C; --rule:#2A332C; --grid:#28312A;
+    --s-blue:#3987e5; --s-brass:#AA8637; --good:#3DBB3D; --goodbg:#1B2A1F; --crit:#E06B6B; --critbg:#2E1D1B;
+    --band:#1A211C; --warnbg:#26221A;
+  }}
+  :root[data-theme="light"]{
+    --paper:#F4F5F1; --surface:#FCFCFA; --ink:#1C2B24; --ink2:#4A5A52; --muted:#7C8880;
+    --brass:#8C6A2B; --brass-big:#A87E2F; --rule:#DDE2DA; --grid:#E3E7DF;
+    --s-blue:#2a78d6; --s-brass:#A87E2F; --good:#006300; --goodbg:#E8F3EC; --crit:#B03030; --critbg:#F9ECEA;
+    --band:#EBEEE7; --warnbg:#F7EFE2;
+  }
+  :root[data-theme="dark"]{
+    --paper:#141A16; --surface:#1C231E; --ink:#E9ECE5; --ink2:#AAB4AB; --muted:#828C84;
+    --brass:#C9A45C; --brass-big:#C9A45C; --rule:#2A332C; --grid:#28312A;
+    --s-blue:#3987e5; --s-brass:#AA8637; --good:#3DBB3D; --goodbg:#1B2A1F; --crit:#E06B6B; --critbg:#2E1D1B;
+    --band:#1A211C; --warnbg:#26221A;
+  }
+  html{background:var(--paper)}
+  body{margin:0;background:var(--paper);color:var(--ink);
+       font:16px/1.65 system-ui,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px 96px}
+  .measure{max-width:700px}
+  .eyebrow{font:600 11px/1 ui-monospace,"SF Mono",Consolas,monospace;letter-spacing:.18em;
+           text-transform:uppercase;color:var(--brass)}
+  header.masthead{padding:72px 0 40px;border-bottom:2px solid var(--ink)}
+  h1{font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+     font-size:clamp(30px,5vw,44px);line-height:1.12;margin:14px 0 10px;text-wrap:balance;font-weight:600}
+  .dek{color:var(--ink2);font-size:18px;max-width:640px;margin:0}
+  h2{font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+     font-size:26px;margin:0 0 6px;line-height:1.2;text-wrap:balance;font-weight:600}
+  h3{font-size:16px;margin:26px 0 8px}
+  section{padding:44px 0 12px;border-bottom:1px solid var(--rule)}
+  p{margin:12px 0;max-width:68ch}
+  table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+  .tablewrap{overflow-x:auto;margin:18px 0;background:var(--surface);border:1px solid var(--rule);border-radius:6px}
+  th{text-align:left;font:600 11px/1.3 ui-monospace,"SF Mono",Consolas,monospace;letter-spacing:.08em;
+     text-transform:uppercase;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--rule);white-space:nowrap}
+  td{padding:11px 14px;border-bottom:1px solid var(--grid);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td.num,th.num{text-align:right}
+  td.good{background:var(--goodbg);color:var(--good);font-weight:600}
+  td.crit{background:var(--critbg);color:var(--crit);font-weight:600}
+  .verdict{background:var(--surface);border:1px solid var(--rule);border-top:3px solid var(--brass-big);
+           border-radius:6px;padding:24px 28px;margin:36px 0 8px}
+  .verdict .vt{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:22px;font-weight:600;margin:0 0 10px}
+  .strat{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:26px 28px;margin:26px 0}
+  .strat .tag{display:inline-block;font:600 11px/1 ui-monospace,Consolas,monospace;letter-spacing:.14em;
+    text-transform:uppercase;padding:5px 10px;border-radius:3px;margin-bottom:12px}
+  .tag.rec{background:var(--goodbg);color:var(--good)}
+  .tag.alt{background:var(--band);color:var(--ink2)}
+  .tag.rej{background:var(--critbg);color:var(--crit)}
+  .strat h2{font-size:23px}
+  .strat .sub{color:var(--muted);font-size:14px;margin:2px 0 14px}
+  .stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:18px 0}
+  .stage{border:1px solid var(--rule);border-radius:5px;padding:14px 16px;background:var(--paper)}
+  .stage .sn{font:600 10.5px/1 ui-monospace,Consolas,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
+  .stage .st{font-weight:600;margin:6px 0 4px}
+  .stage p{font-size:13.5px;margin:4px 0;color:var(--ink2)}
+  .chart{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:20px 22px;margin:22px 0}
+  .chart .ct{font-weight:600;font-size:15px;margin:0 0 2px}
+  .chart .cs{font-size:12.5px;color:var(--muted);margin:0 0 10px}
+  .legend{display:flex;gap:18px;font-size:12.5px;color:var(--ink2);margin-top:8px}
+  .sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+  .svgwrap{overflow-x:auto}
+  footer{padding:36px 0;color:var(--muted);font-size:12.5px;max-width:72ch}
+</style>
+
+<div class="wrap">
+<header class="masthead">
+  <div class="eyebrow">Underwriting · Strategy &amp; Returns · July 2026</div>
+  <h1>Four ways to play 170 Michaela Drive — and the one that survives the math</h1>
+  <p class="dek">Every strategy below was underwritten with the same sourced inputs: mid-2026 financing,
+  non-homestead taxes, real comps, and no assumed rate cuts. Two strategies work at the right basis,
+  one is rejected on arithmetic, one is a negotiation fallback.</p>
+</header>
+
+<div class="verdict">
+  <p class="vt">The verdict: offer $1,750,000. Walk away above ~$1,800,000.</p>
+  <p style="margin:0;max-width:66ch">Run <b>Strategy A</b> (staged resale) as the primary track with <b>Strategy B</b>
+  (furnished executive lease into a spring 2027 exit) as the built-in fallback if not under contract by month four.
+  At a $1.75M basis the all-in cost is ~$375/sqft against a $420–470/sqft comp band — the profit is bought at
+  acquisition, not hoped for at exit. At the current $2.15M ask, no strategy clears a professional hurdle: the
+  correct move at that price is to pass.</p>
+</div>
+
+<section>
+  <div class="eyebrow">Deal lifecycle · financing at every stage</div>
+  <h2>How the deal is financed from entry to exit</h2>
+  <div class="stages">
+    <div class="stage"><div class="sn">Stage 1 · Acquisition</div><div class="st">Private bridge loan</div>
+      <p>65% LTC at ~9.5% interest-only + 2 pts, 12-month term (Atlanta market: 9.5–10.2%). Close in 21 days —
+      speed and certainty are the negotiating currency against a fatigued seller.</p></div>
+    <div class="stage"><div class="sn">Stage 2 · Operation</div><div class="st">Carry management</div>
+      <p>Taxes ~$20K/yr (lagged assessment), insurance ~$12K, utilities $750/mo. Strategy B adds a furnished
+      executive lease at ~$8,500/mo to offset ~70% of carry.</p></div>
+    <div class="stage"><div class="sn">Stage 3 · Disposition</div><div class="st">Retail sale — primary exit</div>
+      <p>Relist inside the comp band at $430/sqft (~$2.2M) where this submarket clears in 1–2.5 months.
+      Exit buyer financing: jumbo at ~6.6%, a 7-week low — affordability tailwind.</p></div>
+    <div class="stage"><div class="sn">Stage 3-alt · Refinance</div><div class="st">Tested — and rejected</div>
+      <p>75% cash-out at 7.75% needs ~$119K/yr of debt service against ~$41K furnished NOI (0.34 DSCR).
+      The honest Plan B is a price cut to the $2.0–2.05M comp floor, which the bear case already prices in.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Strategy A · Primary</div>
+  <div class="strat" style="margin-top:18px">
+    <span class="tag rec">Recommended — primary track</span>
+    <h2>Staged resale sprint</h2>
+    <p class="sub">Hold 6–10 months · bridge 65% LTC · $25K staging · equity ≈ $780–810K</p>
+    <p>Buy the discount, fix the marketing. The house doesn't need work — it needs a price inside the comp band,
+    professional staging, and a broker who isn't the builder. List at ~$2.2M ($430/sqft), directly on top of the
+    477 Michael Dr precedent that cleared in 55 days one street over.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Scenario (buy at $1.75M)</th><th class="num">Exit</th><th class="num">Hold</th><th class="num">Equity</th><th class="num">Profit</th><th class="num">Annualized ROE</th></tr></thead>
+      <tbody>
+        <tr><td>Bear — comp floor, slow</td><td class="num">$2,050,000</td><td class="num">10 mo</td><td class="num">$806,000</td><td class="num crit">−$32,000</td><td class="num crit">−4.7%</td></tr>
+        <tr><td>Base — mid-band</td><td class="num">$2,200,000</td><td class="num">8 mo</td><td class="num">$782,000</td><td class="num good">+$135,000</td><td class="num good">+25.9%</td></tr>
+        <tr><td>Bull — spring 2027 premium</td><td class="num">$2,350,000</td><td class="num">6 mo</td><td class="num">$757,000</td><td class="num good">+$302,000</td><td class="num good">+79.7%</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="eyebrow">Strategy B · Fallback carry</div>
+  <div class="strat">
+    <span class="tag alt">Built-in fallback — activates at month 4</span>
+    <h2>Furnished executive carry → spring 2027 exit</h2>
+    <p class="sub">Hold 10–14 months · bridge 65% LTC · $50K furnishing · lease ~$8,500/mo</p>
+    <p>If the sprint doesn't produce a contract by month four, place a furnished executive tenant (relocation
+    demand from Alpharetta's 2025–26 HQ moves; 575+ corporate units already absorb here) and re-launch the sale
+    into the March–May 2027 selling season. Rent offsets roughly 70% of carry; furniture doubles as staging.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Scenario (buy at $1.75M)</th><th class="num">Exit</th><th class="num">Hold</th><th class="num">Equity</th><th class="num">Profit</th><th class="num">Annualized ROE</th></tr></thead>
+      <tbody>
+        <tr><td>Bear — comp floor, slow</td><td class="num">$2,050,000</td><td class="num">14 mo</td><td class="num">$795,000</td><td class="num crit">−$20,000</td><td class="num crit">−2.2%</td></tr>
+        <tr><td>Base — mid-band</td><td class="num">$2,200,000</td><td class="num">12 mo</td><td class="num">$786,000</td><td class="num good">+$131,000</td><td class="num good">+16.6%</td></tr>
+        <tr><td>Bull — spring 2027 premium</td><td class="num">$2,350,000</td><td class="num">10 mo</td><td class="num">$777,000</td><td class="num good">+$282,000</td><td class="num good">+43.5%</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:13.5px;color:var(--ink2)">B trades a lower ceiling for a higher floor: the lease income
+    cuts the bear-case loss by a third and buys time to reach the strongest listing season instead of selling
+    into winter.</p>
+  </div>
+
+  <div class="chart">
+    <p class="ct">Annualized deal-level return by scenario — Strategy A vs. B at a $1.75M basis</p>
+    <p class="cs">Deal-level ROE annualized; LP-level returns after the waterfall are in the pitch deck</p>
+    <div class="svgwrap">
+    <svg viewBox="0 0 660 250" width="100%" style="max-width:640px;font:12px system-ui" role="img"
+         aria-label="Grouped bar chart: Strategy A returns minus 4.7, 25.9, 79.7 percent and Strategy B minus 2.2, 16.6, 43.5 percent across bear, base, bull scenarios">
+      <!-- gridlines: 80..-20 step 20; y = 20+(80-v)*2 -->
+      <g stroke="var(--grid)" stroke-width="1">
+        <line x1="50" y1="20" x2="640" y2="20"/><line x1="50" y1="60" x2="640" y2="60"/>
+        <line x1="50" y1="100" x2="640" y2="100"/><line x1="50" y1="140" x2="640" y2="140"/>
+        <line x1="50" y1="220" x2="640" y2="220"/>
+      </g>
+      <g fill="var(--muted)" text-anchor="end" font-variant-numeric="tabular-nums">
+        <text x="44" y="24">80%</text><text x="44" y="64">60%</text><text x="44" y="104">40%</text>
+        <text x="44" y="144">20%</text><text x="44" y="184">0</text><text x="44" y="224">−20%</text>
+      </g>
+      <!-- zero baseline -->
+      <line x1="50" y1="180" x2="640" y2="180" stroke="var(--muted)" stroke-width="1.5"/>
+      <!-- Bear group -->
+      <rect x="100" y="180" width="54" height="9.4" fill="var(--s-blue)" rx="2"/>
+      <rect x="162" y="180" width="54" height="4.4" fill="var(--s-brass)" rx="2"/>
+      <text x="127" y="203" text-anchor="middle" fill="var(--ink2)">−4.7%</text>
+      <text x="189" y="199" text-anchor="middle" fill="var(--ink2)">−2.2%</text>
+      <!-- Base group -->
+      <rect x="300" y="128.2" width="54" height="51.8" fill="var(--s-blue)" rx="2"/>
+      <rect x="362" y="146.8" width="54" height="33.2" fill="var(--s-brass)" rx="2"/>
+      <text x="327" y="122" text-anchor="middle" fill="var(--ink)" font-weight="600">25.9%</text>
+      <text x="389" y="141" text-anchor="middle" fill="var(--ink)" font-weight="600">16.6%</text>
+      <!-- Bull group -->
+      <rect x="500" y="20.6" width="54" height="159.4" fill="var(--s-blue)" rx="2"/>
+      <rect x="562" y="93" width="54" height="87" fill="var(--s-brass)" rx="2"/>
+      <text x="527" y="15" text-anchor="middle" fill="var(--ink)" font-weight="600">79.7%</text>
+      <text x="589" y="87" text-anchor="middle" fill="var(--ink)" font-weight="600">43.5%</text>
+      <!-- x labels -->
+      <g fill="var(--ink2)" text-anchor="middle">
+        <text x="158" y="242">Bear · $2.05M exit</text>
+        <text x="358" y="242">Base · $2.20M exit</text>
+        <text x="558" y="242">Bull · $2.35M exit</text>
+      </g>
+    </svg></div>
+    <div class="legend"><span><span class="sw" style="background:var(--s-blue)"></span>Strategy A — staged resale</span>
+    <span><span class="sw" style="background:var(--s-brass)"></span>Strategy B — executive carry</span></div>
+  </div>
+
+  <div class="eyebrow">Strategy C · Rejected</div>
+  <div class="strat">
+    <span class="tag rej">Rejected on arithmetic — shown for discipline</span>
+    <h2>Buy, hold, refinance as a luxury rental</h2>
+    <p class="sub">Tested at the $2.15M ask with mid-2026 DSCR terms</p>
+    <p>The rental math fails before strategy even enters the room. Market rent of ~$6,500/mo produces roughly
+    $27K of NOI after non-homestead taxes ($27K), insurance ($12K), management, and reserves — a <b>1.24% cap
+    rate</b>. No coverage-based lender funds this:</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th class="num">LTV</th><th class="num">Loan</th><th class="num">Debt service (7.25% IO)</th><th class="num">DSCR</th><th>Lender floor</th></tr></thead>
+      <tbody>
+        <tr><td class="num">60%</td><td class="num">$1,290,000</td><td class="num">$93,525</td><td class="num crit">0.29</td><td>1.00–1.25</td></tr>
+        <tr><td class="num">70%</td><td class="num">$1,505,000</td><td class="num">$109,113</td><td class="num crit">0.25</td><td>1.00–1.25</td></tr>
+        <tr><td class="num">75%</td><td class="num">$1,612,500</td><td class="num">$116,906</td><td class="num crit">0.23</td><td>1.00–1.25</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:13.5px;color:var(--ink2)">The refi contingency fails the same test (0.34 DSCR furnished).
+    This asset's value is a sale to an owner-occupant who prices schools and walkability — not an income stream.
+    Rejecting this openly is what protects investor capital from a "we'll just rent it out" fallback that doesn't exist.</p>
+  </div>
+
+  <div class="eyebrow">Strategy D · Negotiation fallback</div>
+  <div class="strat">
+    <span class="tag alt">Deploy only if the seller won't move on price</span>
+    <h2>Creative structure: lease-option or seller carry</h2>
+    <p class="sub">Trades our price for the seller's terms — costs almost no capital to propose</p>
+    <p>The builder is likely paying 9–13% on a construction loan. If they refuse $1.75M cash, offer terms that
+    solve <em>their</em> carry problem while capping our basis:</p>
+    <ul style="max-width:66ch;font-size:14.5px;color:var(--ink2);line-height:1.7">
+      <li><b>Lease-option:</b> 24-month option at a $1.85M strike; ~$8,500/mo lease with $1,500/mo credited toward
+      purchase. We control the asset for ~$25K of option money instead of ~$800K of equity, and exercise only if
+      the spring market confirms the exit.</li>
+      <li><b>Seller carry:</b> $1.90M price with the builder holding a 75% note at 5–6% interest-only for 18 months.
+      The above-market price is financed below our bridge cost, roughly offsetting itself; the builder converts
+      dead carry into interest income.</li>
+    </ul>
+    <p style="font-size:13.5px;color:var(--ink2)">These are presented as negotiation instruments, not the plan of
+    record — returns depend on final terms and are bounded by the same comp band as Strategies A and B.</p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Price discipline</div>
+  <h2>Sensitivity: the whole deal is the purchase price</h2>
+  <p class="measure">Annualized deal-level returns across purchase price and exit. The maximum allowable offer at
+  an 18% hurdle is <b>$1.74M</b>; at 15%, <b>$1.76M</b>. Above ~$1.80M the base case goes single-digit and the
+  bear case turns seriously negative — the deal stops being professional.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Strategy A — annualized ROE</th><th class="num">Bear $2.05M</th><th class="num">Base $2.20M</th><th class="num">Bull $2.35M</th></tr></thead>
+    <tbody>
+      <tr><td><b>Buy $1,750,000</b> (offer)</td><td class="num crit">−4.7%</td><td class="num good">+25.9%</td><td class="num good">+79.7%</td></tr>
+      <tr><td>Buy $1,825,000 (walk-away zone)</td><td class="num crit">−16.1%</td><td class="num">+10.2%</td><td class="num good">+56.5%</td></tr>
+      <tr><td>Buy $1,950,000</td><td class="num crit">−33.2%</td><td class="num crit">−13.6%</td><td class="num">+21.6%</td></tr>
+    </tbody>
+  </table></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Strategy B — annualized ROE</th><th class="num">Bear $2.05M</th><th class="num">Base $2.20M</th><th class="num">Bull $2.35M</th></tr></thead>
+    <tbody>
+      <tr><td><b>Buy $1,750,000</b> (offer)</td><td class="num crit">−2.2%</td><td class="num good">+16.6%</td><td class="num good">+43.5%</td></tr>
+      <tr><td>Buy $1,825,000 (walk-away zone)</td><td class="num crit">−10.6%</td><td class="num">+6.0%</td><td class="num good">+29.8%</td></tr>
+      <tr><td>Buy $1,950,000</td><td class="num crit">−23.2%</td><td class="num crit">−9.9%</td><td class="num">+9.2%</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section style="border-bottom:none">
+  <div class="eyebrow">Risk register</div>
+  <h2>What can go wrong, and what we've done about it</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Risk</th><th>Mitigant</th></tr></thead>
+    <tbody>
+      <tr><td>Exit below the comp band</td><td>Bear case is fully modeled at the $2.05M floor; basis of ~$375/sqft all-in sits 11–20% below every 2024–25 new-construction print</td></tr>
+      <tr><td>Extended days on market</td><td>Dual-track plan: staged sprint converts to leased carry at month 4; furnished lease covers ~70% of carry indefinitely</td></tr>
+      <tr><td>Rate rise (Fed dot plot tilts hawkish)</td><td>No rate cuts underwritten; exit buyer modeled at today's 6.6% jumbo; bridge is fixed-rate for the term</td></tr>
+      <tr><td>Tax reassessment to ~$27K/yr</td><td>Assessment lags a sale by ~a season; sensitivity is ±$7K on a 12-month hold — immaterial to the decision</td></tr>
+      <tr><td>Single-asset concentration &amp; illiquidity</td><td>Disclosed plainly: this is one house, capital is committed for 6–14 months, and the GP co-invest takes first loss</td></tr>
+      <tr><td>Subject's condition/status unverified</td><td>Offer contingent on inspection, appraisal, clear title, and FMLS verification of current listing status and price</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<footer>Underwriting model and all formulas: <b>underwriting_model.py</b> and <b>underwriting.xlsx</b> in this
+package. Market inputs and sources: the Market Breakdown document. Figures are estimates for discussion, not
+guarantees of performance. This document is not an offer to sell securities.</footer>
+</div>

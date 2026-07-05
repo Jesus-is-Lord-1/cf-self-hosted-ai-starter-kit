@@ -1,0 +1,264 @@
+<title>Market Breakdown — 170 Michaela Dr, Alpharetta</title>
+<style>
+  :root{
+    --paper:#F4F5F1; --surface:#FCFCFA; --ink:#1C2B24; --ink2:#4A5A52; --muted:#7C8880;
+    --brass:#8C6A2B; --brass-big:#A87E2F; --rule:#DDE2DA; --grid:#E3E7DF;
+    --s-blue:#2a78d6; --s-brass:#A87E2F; --good:#006300; --crit:#B03030;
+    --band:#EBEEE7; --warnbg:#F7EFE2;
+  }
+  @media (prefers-color-scheme: dark){ :root{
+    --paper:#141A16; --surface:#1C231E; --ink:#E9ECE5; --ink2:#AAB4AB; --muted:#828C84;
+    --brass:#C9A45C; --brass-big:#C9A45C; --rule:#2A332C; --grid:#28312A;
+    --s-blue:#3987e5; --s-brass:#AA8637; --good:#3DBB3D; --crit:#E06B6B;
+    --band:#1A211C; --warnbg:#26221A;
+  }}
+  :root[data-theme="light"]{
+    --paper:#F4F5F1; --surface:#FCFCFA; --ink:#1C2B24; --ink2:#4A5A52; --muted:#7C8880;
+    --brass:#8C6A2B; --brass-big:#A87E2F; --rule:#DDE2DA; --grid:#E3E7DF;
+    --s-blue:#2a78d6; --s-brass:#A87E2F; --good:#006300; --crit:#B03030;
+    --band:#EBEEE7; --warnbg:#F7EFE2;
+  }
+  :root[data-theme="dark"]{
+    --paper:#141A16; --surface:#1C231E; --ink:#E9ECE5; --ink2:#AAB4AB; --muted:#828C84;
+    --brass:#C9A45C; --brass-big:#C9A45C; --rule:#2A332C; --grid:#28312A;
+    --s-blue:#3987e5; --s-brass:#AA8637; --good:#3DBB3D; --crit:#E06B6B;
+    --band:#1A211C; --warnbg:#26221A;
+  }
+  html{background:var(--paper)}
+  body{margin:0;background:var(--paper);color:var(--ink);
+       font:16px/1.65 system-ui,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px 96px}
+  .measure{max-width:700px}
+  .serif{font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif}
+  .eyebrow{font:600 11px/1 ui-monospace,"SF Mono",Consolas,monospace;letter-spacing:.18em;
+           text-transform:uppercase;color:var(--brass)}
+  header.masthead{padding:72px 0 40px;border-bottom:2px solid var(--ink)}
+  h1{font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+     font-size:clamp(30px,5vw,44px);line-height:1.12;margin:14px 0 10px;text-wrap:balance;font-weight:600}
+  .dek{color:var(--ink2);font-size:18px;max-width:640px;margin:0}
+  h2{font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+     font-size:26px;margin:0 0 6px;line-height:1.2;text-wrap:balance;font-weight:600}
+  h3{font-size:16px;margin:26px 0 8px}
+  section{padding:44px 0 8px;border-bottom:1px solid var(--rule)}
+  p{margin:12px 0;max-width:68ch}
+  .statrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin:32px 0 6px}
+  .stat{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:16px 18px}
+  .stat .v{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:30px;line-height:1.1;font-weight:600}
+  .stat .l{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.4}
+  .stat .d{font-size:12px;margin-top:4px}
+  .up{color:var(--good)} .down{color:var(--crit)}
+  table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+  .tablewrap{overflow-x:auto;margin:18px 0;background:var(--surface);border:1px solid var(--rule);border-radius:6px}
+  th{text-align:left;font:600 11px/1.3 ui-monospace,"SF Mono",Consolas,monospace;letter-spacing:.08em;
+     text-transform:uppercase;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--rule);white-space:nowrap}
+  td{padding:11px 14px;border-bottom:1px solid var(--grid);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td.num,th.num{text-align:right}
+  .hl td{background:var(--warnbg)}
+  .timeline{list-style:none;margin:24px 0;padding:0;border-left:2px solid var(--rule)}
+  .timeline li{position:relative;padding:0 0 26px 26px;max-width:66ch}
+  .timeline li::before{content:"";position:absolute;left:-6px;top:6px;width:10px;height:10px;
+    border-radius:50%;background:var(--brass-big)}
+  .timeline .when{font:600 11px/1 ui-monospace,Consolas,monospace;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--muted)}
+  .timeline .what{font-weight:600;margin:4px 0 2px}
+  .timeline .amt{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:20px;font-weight:600}
+  .callout{background:var(--band);border-left:3px solid var(--brass-big);padding:16px 20px;margin:24px 0;max-width:66ch}
+  .callout b{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:17px}
+  /* comps bar chart (HTML bars) */
+  .chart{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:20px 22px;margin:20px 0}
+  .chart .ct{font-weight:600;font-size:15px;margin:0 0 2px}
+  .chart .cs{font-size:12.5px;color:var(--muted);margin:0 0 16px}
+  .brow{display:grid;grid-template-columns:190px 1fr 74px;align-items:center;gap:10px;padding:5px 0}
+  .brow .bl{font-size:13px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:right}
+  .btrack{background:var(--grid);border-radius:4px;height:18px;position:relative}
+  .bfill{height:18px;border-radius:4px 4px 4px 4px;background:var(--s-blue);min-width:2px}
+  .bfill.subject{background:var(--s-brass)}
+  .brow .bv{font-size:13px;font-weight:600;font-variant-numeric:tabular-nums}
+  .legend{display:flex;gap:18px;font-size:12.5px;color:var(--ink2);margin-top:14px}
+  .sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+  .refband{font-size:12px;color:var(--muted);margin-top:10px}
+  .srcs{font-size:12.5px;color:var(--muted);line-height:1.8}
+  .srcs a{color:var(--brass);text-decoration:none;border-bottom:1px solid var(--rule)}
+  footer{padding:36px 0;color:var(--muted);font-size:12.5px;max-width:72ch}
+  @media (max-width:640px){ .brow{grid-template-columns:120px 1fr 62px} .brow .bl{font-size:11.5px} }
+</style>
+
+<div class="wrap">
+<header class="masthead">
+  <div class="eyebrow">Market Breakdown · North Fulton, Georgia · Researched July 2026</div>
+  <h1>Alpharetta 30009: a strong market that just repriced one house for us</h1>
+  <p class="dek">The submarket around 170 Michaela Drive is healthy — 2.3 months of supply, three-week average
+  marketing times, top-decile schools, and a tech-employment engine. The subject property is the outlier:
+  eleven months on market and a 20% price cut. That gap is the opportunity.</p>
+</header>
+
+<section>
+  <div class="eyebrow">01 · Market vitals</div>
+  <h2>The Alpharetta market at a glance</h2>
+  <div class="statrow">
+    <div class="stat"><div class="v">$724–740K</div><div class="l">Median sale price, Alpharetta (early 2026)</div></div>
+    <div class="stat"><div class="v">2.3 mo</div><div class="l">Months of supply — still a tight market</div></div>
+    <div class="stat"><div class="v">21–34</div><div class="l">Average days on market (2026 / 2025)</div></div>
+    <div class="stat"><div class="v">~97%</div><div class="l">List-to-sale ratio; ~36% still sell over list</div></div>
+    <div class="stat"><div class="v">$303</div><div class="l">30009 median $/sqft, all housing</div><div class="d down">▼ 4.6% YoY — pricing discipline returning</div></div>
+  </div>
+  <p class="measure">Two things are true at once. Alpharetta overall remains a seller-friendly market on volume and
+  speed — and the price-per-foot data shows buyers are no longer paying aspirational premiums. Well-priced homes
+  clear in one to two-and-a-half months; mispriced ones sit. That split defines this deal.</p>
+</section>
+
+<section>
+  <div class="eyebrow">02 · The subject</div>
+  <h2>170 Michaela Drive: an eleven-month listing in a three-week market</h2>
+  <p class="measure">6 bed · 5.5 bath · 5,120 sqft new construction (2025) on 0.6 acre. A two-minute walk to
+  Wills Park, six minutes to downtown Alpharetta and Avalon, feeding the Milton High School district (GreatSchools 10/10).
+  The house is right. The original price was not.</p>
+  <ul class="timeline">
+    <li><span class="when">Oct 2024</span><div class="what">Builder acquires lot (teardown)</div>
+        <span class="amt">$570,000</span><div style="color:var(--muted);font-size:13px">Prior 1975 house on site; land basis for the current build.</div></li>
+    <li><span class="when">Aug 2025</span><div class="what">Listed — Ansley / Christie's International (FMLS 7622905)</div>
+        <span class="amt">$2,695,000</span><div style="color:var(--muted);font-size:13px">$526/sqft — a price only Avalon-adjacent product has ever achieved.</div></li>
+    <li><span class="when">Feb 2026</span><div class="what">Relisted by the builder's own brokerage (FMLS 7719521)</div>
+        <span class="amt">$2,150,000</span><div style="color:var(--muted);font-size:13px">A $545K / 20.2% cut, to $420/sqft. Agent switch to a self-listing signals carrying-cost fatigue.</div></li>
+    <li><span class="when">Jul 2026</span><div class="what">Still active — ~11 months cumulative market time</div>
+        <span class="amt">Possible further cut to ~$2.0M</span><div style="color:var(--muted);font-size:13px">Indexed listing data shows a $390/sqft (=$2.0M) reference — unconfirmed; verify in FMLS.</div></li>
+  </ul>
+  <div class="callout"><b>Why this listing failed — and why that's the entry.</b><br>
+  The builder has carried this project for 21 months: land purchase Oct 2024, construction through 2025, and nearly a
+  year of marketing — likely on a construction loan costing 9–10%. Every month of delay costs the seller roughly
+  $15–20K in interest and carry. Sellers in that position trade price for certainty.</div>
+</section>
+
+<section>
+  <div class="eyebrow">03 · Valuation evidence</div>
+  <h2>What the closed comps actually support</h2>
+  <div class="chart">
+    <p class="ct">Price per square foot — closed sales vs. the subject's pricing</p>
+    <p class="cs">Luxury new construction &amp; near-new sales, Alpharetta 30009/30004, 2023–2025 closings</p>
+    <!-- scale: 0–650 $/sqft -->
+    <div class="brow"><span class="bl">Subject — original list</span><div class="btrack"><div class="bfill subject" style="width:80.9%"></div></div><span class="bv">$526</span></div>
+    <div class="brow"><span class="bl">Subject — current ask</span><div class="btrack"><div class="bfill subject" style="width:64.6%"></div></div><span class="bv">$420</span></div>
+    <div class="brow"><span class="bl">2444 Tenor Ln (Avalon-adj.)</span><div class="btrack"><div class="bfill" style="width:97.5%"></div></div><span class="bv">$634</span></div>
+    <div class="brow"><span class="bl">1070 Mid Broadwell Rd</span><div class="btrack"><div class="bfill" style="width:83.8%"></div></div><span class="bv">$545</span></div>
+    <div class="brow"><span class="bl">477 Michael Dr (same pocket)</span><div class="btrack"><div class="bfill" style="width:64.9%"></div></div><span class="bv">$422</span></div>
+    <div class="brow"><span class="bl">289 Milton Ave (downtown)</span><div class="btrack"><div class="bfill" style="width:61.4%"></div></div><span class="bv">$399</span></div>
+    <div class="brow"><span class="bl">2863 Stirling Ridge Ct</span><div class="btrack"><div class="bfill" style="width:56.8%"></div></div><span class="bv">$369</span></div>
+    <div class="brow"><span class="bl">135 Von Lake Dr (7,300 sf)</span><div class="btrack"><div class="bfill" style="width:48.3%"></div></div><span class="bv">$314</span></div>
+    <div class="legend"><span><span class="sw" style="background:var(--s-brass)"></span>Subject pricing</span>
+    <span><span class="sw" style="background:var(--s-blue)"></span>Closed comps</span></div>
+    <div class="refband">Comp support band for the subject's size and location: <b>$420–470/sqft → $2.15M–$2.41M</b>.
+    The $634 print is a small-format home beside Avalon; the $314 print is a 7,300 sqft home where size dilutes $/sqft.</div>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Comparable</th><th class="num">Sold</th><th>Date</th><th class="num">SqFt</th><th class="num">$/SqFt</th><th>Bd/Ba</th><th>Read-through</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><b>477 Michael Dr, 30009</b></td><td class="num">$2,025,000</td><td>Aug 2025</td><td class="num">4,804</td><td class="num">$422</td><td>5/4.5</td><td><b>Best comp</b> — same street pocket, 2024 build; listed $2,199,000, cleared at 92% of list in ~55 days</td></tr>
+      <tr><td>2444 Tenor Ln, 30009</td><td class="num">$2,224,500</td><td>May 2025</td><td class="num">3,506</td><td class="num">$634</td><td>3/3.5</td><td>Avalon-adjacent walkability premium, small format</td></tr>
+      <tr><td>135 Von Lake Dr, 30004</td><td class="num">$2,292,500</td><td>Oct 2025</td><td class="num">7,300</td><td class="num">$314</td><td>5/5.5</td><td>1-acre estate; 95.6% of list in ~2.5 months</td></tr>
+      <tr><td>2863 Stirling Ridge Ct, 30004</td><td class="num">$2,032,500</td><td>Jun 2025</td><td class="num">5,510</td><td class="num">$369</td><td>6/8</td><td>2006 resale — shows $2M+ absorption depth</td></tr>
+      <tr><td>1070 Mid Broadwell Rd, 30004</td><td class="num">$2,630,444</td><td>Jun 2023</td><td class="num">4,822</td><td class="num">$545</td><td>5/5.5</td><td>High-water new-construction print (2023 market)</td></tr>
+      <tr><td>289 Milton Ave, 30009</td><td class="num">$1,844,000</td><td>Jun 2023</td><td class="num">4,617</td><td class="num">$399</td><td>5/4</td><td>Near-new resale, walkable downtown</td></tr>
+    </tbody>
+  </table></div>
+  <p class="measure">The market's verdict is consistent: <b>$2M+ product in this submarket clears in one to
+  two-and-a-half months when priced inside the comp band</b> — 477 Michael Dr needed an 8% discount to list,
+  135 Von Lake a 4.4% discount. Product priced above the band ($500+/sqft away from Avalon) simply sits,
+  which is exactly the subject's history.</p>
+</section>
+
+<section>
+  <div class="eyebrow">04 · Demand fundamentals</div>
+  <h2>Why the buyer pool at $2M exists here</h2>
+  <div class="statrow">
+    <div class="stat"><div class="v">~$147K</div><div class="l">Median household income, Alpharetta</div></div>
+    <div class="stat"><div class="v">~900</div><div class="l">Technology companies — "Technology City of the South"</div></div>
+    <div class="stat"><div class="v">10/10</div><div class="l">Milton High School (GreatSchools); top 5% in Georgia</div></div>
+    <div class="stat"><div class="v">1,200+</div><div class="l">New jobs announced in 9 months of 2025</div></div>
+  </div>
+  <p class="measure">Anchor employers include Equifax (2,100 employees; a $25M expansion adding ~244 tech roles),
+  Jackson Healthcare (2,000), Fiserv (1,900), LexisNexis Risk Solutions, ADP, Siemens, and Morgan Stanley's technology
+  operations. 2025 brought the Hisense US headquarters relocation, Kloeckner Metals and Kawneer HQs, and an EY.ai
+  lab built with NVIDIA. This is the executive-household pipeline that buys 5,000 sqft near Wills Park.</p>
+  <p class="measure">Micro-location: the subject walks to Wills Park (120 acres: equestrian center, pool, ballfields)
+  and drives six minutes to two of metro Atlanta's premier retail-dining districts — downtown Alpharetta and Avalon.
+  Walkable-to-amenity streets in 30009 are the specific pocket where $420+/sqft has repeatedly printed.</p>
+</section>
+
+<section>
+  <div class="eyebrow">05 · Income &amp; carry economics</div>
+  <h2>Rental market: real, but thin at the top — plan around it</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Income scenario</th><th class="num">Monthly</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr><td>Unfurnished long-term lease</td><td class="num">$5,500–7,500</td><td>115 Firefly Cir (5,000 sqft): $5,000 · 604 Landler Ter (4,618 sqft): $4,600 — both ~$1.00/sqft, older stock; new-build premium supports the upper band</td></tr>
+      <tr><td>Furnished executive lease</td><td class="num">~$8,000–11,000</td><td>25–50% furnished premium; 575+ corporate housing units marketed in Alpharetta; relocation demand from HQ moves</td></tr>
+      <tr><td>Short-term rental (6BR)</td><td class="num">~$6,100 avg (gross)</td><td>Rabbu: 6+BR ADR ~$899, ~$73K/yr gross — <b>not compelling</b> after opex, 8% lodging tax, and Alpharetta's 2025 STR ordinance (density caps per subdivision make approval uncertain)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Carry item (non-homestead investor basis)</th><th class="num">Annual</th><th>Basis</th></tr></thead>
+    <tbody>
+      <tr><td>Property tax — 31.70 mills on 40% of FMV</td><td class="num">~$27,000</td><td>Fulton 8.87 + Schools 17.08 + City 5.75 mills at $2.15M FMV; assessment lags sale ~1 season</td></tr>
+      <tr><td>Insurance (high-value landlord policy)</td><td class="num">~$12,000</td><td>Chubb/PURE-tier estimate for ~$1.5–2M rebuild</td></tr>
+      <tr><td>Utilities, lawn, alarm</td><td class="num">~$9,000</td><td>$750/month while held</td></tr>
+    </tbody>
+  </table></div>
+  <p class="measure">Gross yield on a ~$2M basis is 3–4% — the asset cannot carry itself as a rental at market
+  leverage. Rental income here is a <b>carry-cost offset during the hold, not the thesis</b>. The full
+  debt-service-coverage math (and why buy-and-hold is rejected) is in the strategy deck.</p>
+</section>
+
+<section>
+  <div class="eyebrow">06 · Capital markets</div>
+  <h2>The financing environment, mid-2026</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Instrument</th><th class="num">Rate</th><th>Terms</th></tr></thead>
+    <tbody>
+      <tr><td>30-yr conforming / jumbo (the exit buyer's cost)</td><td class="num">6.43% / ~6.6%</td><td>Freddie Mac PMMS, Jul 2, 2026 — a 7-week low; helps end-buyer affordability</td></tr>
+      <tr><td>DSCR investor loan</td><td class="num">7.0–7.5%</td><td>75–80% LTV; requires 1.0–1.25 coverage the subject cannot produce</td></tr>
+      <tr><td>Private bridge / hard money (Atlanta)</td><td class="num">~9.5–10.2% + 2–3 pts</td><td>To ~85–90% LTC, 70–75% of ARV, 12-mo IO — our acquisition instrument</td></tr>
+      <tr><td>Spec construction (context: seller's carry)</td><td class="num">9–13%</td><td>What the builder is likely paying today — the motivation clock</td></tr>
+      <tr><td>Investor cash-out refi (contingency)</td><td class="num">~7.75%</td><td>75% LTV cap, 680+ FICO, seasoning required</td></tr>
+    </tbody>
+  </table></div>
+  <p class="measure">Rate outlook: the June 2026 FOMC held at 3.50–3.75% and the dot plot tilts hawkish — futures
+  price a possible <b>hike</b> by October 2026. We underwrite <b>no rate relief</b>: the exit assumes today's ~6.6%
+  jumbo buyer, and any easing is upside, not plan.</p>
+</section>
+
+<section style="border-bottom:none">
+  <div class="eyebrow">Sources &amp; verification</div>
+  <h2>Where these numbers come from</h2>
+  <p class="srcs measure">
+    Subject records: <a href="https://www.redfin.com/GA/Alpharetta/170-Michaela-Dr-30009/home/24837559">Redfin</a> ·
+    <a href="https://www.ansleyre.com/7622905/170-michaela-drive-alpharetta-georgia-30009-fmls">Ansley (FMLS 7622905)</a> ·
+    <a href="https://www.homesatlantaga.com/blog/170-michaela-drive-alpharetta-ga-30009-7719521.html">Relisting (FMLS 7719521)</a><br>
+    Comps: <a href="https://www.ansleyre.com/7602190/477-michael-drive-alpharetta-georgia-30009-fmls">477 Michael Dr</a> ·
+    <a href="https://www.homes.com/alpharetta-ga/30009/sold/">Homes.com 30009 solds</a> ·
+    <a href="https://www.remax.com/luxury/ga/alpharetta/home-details/135-von-lake-dr-alpharetta-ga-30004/18330411398203982701/M00000188/10570420">135 Von Lake</a> ·
+    <a href="https://www.zillow.com/homedetails/289-Milton-Ave-Alpharetta-GA-30009/14687358_zpid/">289 Milton Ave</a><br>
+    Market: <a href="https://www.redfin.com/city/438/GA/Alpharetta/housing-market">Redfin Alpharetta</a> ·
+    <a href="https://www.redfin.com/zipcode/30009/housing-market">Redfin 30009</a> ·
+    <a href="https://www.zillow.com/home-values/16733/alpharetta-ga/">Zillow</a> ·
+    <a href="https://theagency-atlanta.com/blog/atlanta-housing-market-forecast-2026-what-buyers-and-sellers-need-to-know-right-now-in-metro-atlanta">The Agency 2026 forecast</a><br>
+    Fundamentals: <a href="https://connectedalpharetta.com/fast-facts/">Connected Alpharetta</a> ·
+    <a href="https://www.greatschools.org/georgia/milton/998-Milton-High-School/">GreatSchools — Milton HS</a> ·
+    <a href="https://www.wsbradio.com/news/local/equifax-invest-25-million-alpharetta-expansion-adding-nearly-250-jobs/KN3MO5SFYBHKBNG2LFJHQOARW4/">Equifax expansion</a><br>
+    Taxes &amp; carry: <a href="https://www.fultoncountyga.gov/News/2025/08/06/Fulton-Holds-Millage-Rate-at-8-87-mills-for-2025">Fulton County millage</a> ·
+    <a href="https://content.civicplus.com/api/assets/e9ac6e65-14d8-47d2-a966-6231e8715477">City of Alpharetta tax guide</a> ·
+    <a href="https://www.conciergeinsurancegroup.com/blog/2025/2025-high-value-homeowners-insurance-cost-in-georgia">High-value insurance GA</a><br>
+    Rents &amp; STR: <a href="https://www.zillow.com/rental-manager/market-trends/alpharetta-ga/">Zillow rentals</a> ·
+    <a href="https://rabbu.com/airbnb-data/alpharetta-ga">Rabbu STR data</a> ·
+    <a href="https://lisashippellaw.com/new-short-term-rental-law-in-alpharetta-what-airbnb-vrbo-owners-need-to-know/">Alpharetta STR ordinance</a><br>
+    Financing: <a href="https://www.freddiemac.com/pmms">Freddie Mac PMMS</a> ·
+    <a href="https://hardmoneyscout.com/hard-money-lenders/georgia/atlanta">Atlanta hard money</a> ·
+    <a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20260617a.htm">FOMC June 2026</a>
+  </p>
+</section>
+
+<footer>Prepared July 2026 from public listing indexes and market data. Listing-portal pages block direct retrieval,
+so subject status and the possible sub-$2.15M price should be re-verified in FMLS before an offer is submitted.
+Figures marked as estimates are underwriting placeholders, not quotes. This document is informational and is not
+an offer to sell securities.</footer>
+</div>
