@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>170 Michaela Drive — Deal Analysis</title>
+<style>
+  :root{
+    --surface:#fcfcfb; --page:#f9f9f7;
+    --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --axis:#c3c2b7; --border:rgba(11,11,11,0.10);
+    --s1:#2a78d6; --s2:#1baf7a; --s3:#eda100; --s6:#e34948;
+    --good:#0ca30c; --goodtext:#006300; --warn:#fab219; --serious:#ec835a; --critical:#d03b3b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  html,body{background:#fff;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:10.5pt;line-height:1.5}
+  .page{page-break-after:always;padding:0}
+  .page:last-child{page-break-after:auto}
+  h1{font-size:21pt;font-weight:800;letter-spacing:-.02em}
+  h2{font-size:13.5pt;font-weight:700;margin:0 0 8px;letter-spacing:-.01em}
+  h3{font-size:10.5pt;font-weight:700;margin:0 0 4px}
+  p{margin:0 0 8px;color:var(--ink)}
+  .sub{color:var(--ink2)} .mut{color:var(--muted)}
+  .small{font-size:8.5pt}
+  .cover-band{background:#0d366b;color:#fff;padding:34px 40px 28px;border-radius:0 0 14px 14px}
+  .cover-band .kicker{font-size:9pt;letter-spacing:.14em;text-transform:uppercase;color:#9ec5f4;font-weight:700;margin-bottom:10px}
+  .cover-band h1{color:#fff;margin-bottom:6px}
+  .cover-band .addr{font-size:12pt;color:#cde2fb}
+  .wrap{padding:20px 40px}
+  .tiles{display:flex;gap:10px;margin:14px 0}
+  .tile{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+  .tile .lab{font-size:8pt;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:3px}
+  .tile .val{font-size:16pt;font-weight:800;letter-spacing:-.02em}
+  .tile .note{font-size:8pt;color:var(--ink2);margin-top:2px}
+  .verdict{border-left:4px solid var(--warn);background:#fdf6e6;border-radius:6px;padding:12px 16px;margin:12px 0}
+  .flag{border-left:4px solid var(--critical);background:#fbeeee;border-radius:6px;padding:12px 16px;margin:12px 0}
+  .okbox{border-left:4px solid var(--good);background:#eef7ee;border-radius:6px;padding:12px 16px;margin:12px 0}
+  table{width:100%;border-collapse:collapse;font-size:9.5pt}
+  th{font-size:8pt;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;padding:6px 8px;border-bottom:1.5px solid var(--axis)}
+  td{padding:5.5px 8px;border-bottom:1px solid var(--grid);vertical-align:top}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  tr.total td{font-weight:800;border-top:2px solid var(--axis);border-bottom:none}
+  tr.subtotal td{font-weight:700;background:#f4f3f0}
+  .two{display:flex;gap:18px}.two>div{flex:1}
+  .chart{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin:10px 0}
+  .chart .ct{font-size:9.5pt;font-weight:700;margin-bottom:2px}
+  .chart .cs{font-size:8pt;color:var(--muted);margin-bottom:10px}
+  .row{display:flex;align-items:center;margin:4px 0;gap:8px}
+  .row .rlab{width:118px;font-size:8.5pt;color:var(--ink2);text-align:right;flex:none;font-variant-numeric:tabular-nums}
+  .track{flex:1;position:relative;height:16px}
+  .bar{position:absolute;top:1px;height:14px;border-radius:0 4px 4px 0}
+  .bar.neg{border-radius:4px 0 0 4px}
+  .rval{width:72px;font-size:8.5pt;font-weight:700;flex:none;font-variant-numeric:tabular-nums}
+  .zeroline{position:absolute;top:-3px;bottom:-3px;width:1.5px;background:var(--axis)}
+  ul{margin:0 0 8px 18px}
+  li{margin-bottom:4px}
+  .steps li{margin-bottom:7px}
+  .pill{display:inline-block;font-size:7.5pt;font-weight:700;padding:1.5px 8px;border-radius:99px;letter-spacing:.04em;text-transform:uppercase}
+  .pill.hi{background:#fbeeee;color:var(--critical)} .pill.md{background:#fdf6e6;color:#8a5a00} .pill.lo{background:#eef7ee;color:var(--goodtext)}
+  .footer{margin-top:14px;padding-top:8px;border-top:1px solid var(--grid);font-size:7.5pt;color:var(--muted)}
+  table,.chart,.tiles,.verdict,.flag,.okbox,.row{break-inside:avoid}
+  h2,h3{break-after:avoid}
+  tr{break-inside:avoid}
+  .stackwrap{margin:8px 0 4px}
+  .stack{display:flex;height:26px;border-radius:6px;overflow:hidden;gap:2px;background:#fff}
+  .stack div{height:100%}
+  .sleg{display:flex;gap:14px;margin-top:8px;flex-wrap:wrap}
+  .sleg span{font-size:8pt;color:var(--ink2);display:flex;align-items:center;gap:5px}
+  .dot{width:9px;height:9px;border-radius:3px;display:inline-block}
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 : COVER / EXEC SUMMARY ============ -->
+<div class="page">
+  <div class="cover-band">
+    <div class="kicker">Investment Analysis · Fix &amp; Flip · July 4, 2026</div>
+    <h1>170 Michaela Drive</h1>
+    <div class="addr">Alpharetta, GA 30009 · 6 bd / 5.5 ba · ~5,120 sq ft · New construction (2025)</div>
+  </div>
+  <div class="wrap">
+    <div class="tiles">
+      <div class="tile"><div class="lab">Asking</div><div class="val">$1.82M</div><div class="note">$355 / sq ft</div></div>
+      <div class="tile"><div class="lab">Rehab / Completion</div><div class="val">$173K</div><div class="note">+10% contingency modeled</div></div>
+      <div class="tile"><div class="lab">Claimed ARV</div><div class="val">$3.0M</div><div class="note">$586 / sq ft</div></div>
+      <div class="tile"><div class="lab">Modeled ARV</div><div class="val">$2.4–2.55M</div><div class="note">$469–498 / sq ft</div></div>
+    </div>
+
+    <h2>Verdict: Real discount, inflated ARV — pursue, but underwrite to ~$2.5M</h2>
+    <p>This is a 2025-built new-construction home near downtown Alpharetta, not a classic rehab. It last traded as a
+    teardown for <b>$570K in Oct 2024</b>, was built out, then listed <b>Aug 2025 at $2,695,000</b>, cut to
+    <b>$2,495,000</b>, and <b>delisted Sept 25, 2025 without selling</b>. It has cycled through multiple MLS numbers
+    since. That history is the single most important fact in this deal:</p>
+
+    <div class="flag">
+      <b>Red flag on the $3.0M ARV.</b> The open market already declined this exact house at $2,495,000
+      ($487/sq ft) in fall 2025, and Alpharetta prices have since drifted <b>down ~5.4% YoY</b> (median $724K, Mar 2026)
+      with days-on-market rising (43 vs 36). A $3.0M exit is ~20% above a price that already failed. Do not underwrite to it
+      without a same-street, same-size closed comp.
+    </div>
+
+    <div class="okbox">
+      <b>Why the deal still works.</b> At $1.82M you are buying <b>27% below the failed list price</b> and ~$355/sq ft —
+      well under replacement cost for finished luxury product in 30009. Even at a conservative $2.5M exit, the model shows
+      ~<b>$294K profit all-cash (14.3% ROI, ~8 mo)</b> or ~<b>$154K financed (~27% cash-on-cash)</b>. The margin of
+      safety comes from the entry price, not the ARV story.
+    </div>
+
+    <h3>Key numbers at a glance</h3>
+    <table>
+      <tr><th>Metric</th><th class="num">Value</th><th>Read</th></tr>
+      <tr><td>Total project basis (all-cash)</td><td class="num">$2,055,800</td><td>Purchase + closing + rehab w/ contingency + 8-mo carry</td></tr>
+      <tr><td>Total basis (hard-money financed)</td><td class="num">$2,196,400</td><td>Adds ~$140.6K points + interest</td></tr>
+      <tr><td>Breakeven sale price (financed)</td><td class="num">≈ $2.34M</td><td>Comfortably below the $2.495M failed list</td></tr>
+      <tr><td>Profit at $2.5M exit / $3.0M exit (financed)</td><td class="num">$154K / $624K</td><td>Upside is real if seller's ARV proves out</td></tr>
+      <tr><td>70%-rule max offer @ $3.0M ARV</td><td class="num">$1,927,000</td><td>Asking passes — but only at the claimed ARV</td></tr>
+      <tr><td>70%-rule max offer @ $2.5M ARV</td><td class="num">$1,577,000</td><td>Asking fails at realistic ARV → negotiate</td></tr>
+    </table>
+
+    <h3 style="margin-top:12px">Recommendation</h3>
+    <p><b>Offer $1.65–1.72M</b>, justify with the failed-listing history and softening market, and hold a hard ceiling of
+    <b>$1.82M only if</b> diligence confirms (a) clean title with no mechanic's liens, (b) certificate of occupancy or a
+    verified path to one inside the $173K budget, and (c) an agent CMA supporting ≥ $2.5M. Target exit list price:
+    <b>$2,475,000–$2,550,000</b> — deliberately under the psychological $2.5M line the market already rejected.</p>
+
+    <div class="footer">Prepared for Cleeford Faustin · Sources: Redfin, Zillow, Movoto, Houzeo, Ansley RE listing records; Redfin/Zillow/Houzeo Alpharetta market reports (accessed Jul 4, 2026). All figures are estimates for decision support, not an appraisal.</div>
+  </div>
+</div>
+
+<!-- ============ PAGE 2 : FINANCIAL BREAKDOWN ============ -->
+<div class="page">
+  <div class="wrap" style="padding-top:28px">
+    <h2>1 · Financial Breakdown</h2>
+    <div class="two">
+      <div>
+        <h3>Uses of funds (8-month project)</h3>
+        <table>
+          <tr><th>Line item</th><th class="num">Amount</th></tr>
+          <tr><td>Purchase price</td><td class="num">$1,820,000</td></tr>
+          <tr><td>Acquisition closing costs (~1.5%)</td><td class="num">$27,300</td></tr>
+          <tr><td>Rehab / completion budget</td><td class="num">$173,000</td></tr>
+          <tr><td>Rehab contingency (10%)</td><td class="num">$17,300</td></tr>
+          <tr class="subtotal"><td>Hard costs</td><td class="num">$2,037,600</td></tr>
+          <tr><td>Property taxes (8 mo, est.)</td><td class="num">$11,000</td></tr>
+          <tr><td>Builder's-risk / vacant insurance</td><td class="num">$4,800</td></tr>
+          <tr><td>Utilities, lawn, misc.</td><td class="num">$2,400</td></tr>
+          <tr class="subtotal"><td>All-cash project basis</td><td class="num">$2,055,800</td></tr>
+          <tr><td>Hard-money origination (2 pts on $1.629M)</td><td class="num">$32,600</td></tr>
+          <tr><td>Interest (10.5% APR, 8 mo, draws averaged)</td><td class="num">$108,000</td></tr>
+          <tr class="total"><td>Financed project basis</td><td class="num">$2,196,400</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3>Financing assumption (typical GA hard money)</h3>
+        <table>
+          <tr><th>Term</th><th class="num">Value</th></tr>
+          <tr><td>Loan: 80% of purchase + 100% rehab</td><td class="num">$1,629,000</td></tr>
+          <tr><td>Down payment (20% of purchase)</td><td class="num">$364,000</td></tr>
+          <tr><td>Rate / points</td><td class="num">10.5% / 2 pts</td></tr>
+          <tr><td>Est. total cash in (down, closing, pts, carry, interest)</td><td class="num">≈ $567,000</td></tr>
+        </table>
+        <h3 style="margin-top:12px">Sale-side assumptions</h3>
+        <table>
+          <tr><td>Commission + seller closing</td><td class="num">6.0% of exit</td></tr>
+          <tr><td>Hold to resale</td><td class="num">8 months</td></tr>
+          <tr><td>Exit DOM target</td><td class="num">&lt; 45 days</td></tr>
+        </table>
+        <div class="chart">
+          <div class="ct">Where the money goes — financed basis $2.196M</div>
+          <div class="cs">Share of total project basis</div>
+          <div class="stackwrap">
+            <div class="stack">
+              <div style="width:82.9%;background:#2a78d6"></div>
+              <div style="width:8.7%;background:#1baf7a"></div>
+              <div style="width:0.8%;background:#eda100"></div>
+              <div style="width:1.2%;background:#4a3aa7"></div>
+              <div style="width:6.4%;background:#e34948"></div>
+            </div>
+            <div class="sleg">
+              <span><i class="dot" style="background:#2a78d6"></i>Purchase 82.9%</span>
+              <span><i class="dot" style="background:#1baf7a"></i>Rehab+cont. 8.7%</span>
+              <span><i class="dot" style="background:#eda100"></i>Carry 0.8%</span>
+              <span><i class="dot" style="background:#4a3aa7"></i>Closing 1.2%</span>
+              <span><i class="dot" style="background:#e34948"></i>Financing 6.4%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:10px">Profit by exit price — the number that decides this deal</h3>
+    <div class="chart">
+      <div class="ct">Net profit after 6% selling costs</div>
+      <div class="cs">Blue = financed (hard money) · Green = all-cash. Zero line marked. Failed 2025 list price was $2.495M.</div>
+      <!-- scale: track maps -$150K..+$800K ; zero at 15.8% -->
+      <div class="row"><div class="rlab">$3.0M (claimed ARV)</div><div class="track"><div class="zeroline" style="left:15.8%"></div><div class="bar" style="left:15.8%;width:52.4%;background:#2a78d6"></div></div><div class="rval">+$624K</div></div>
+      <div class="row"><div class="rlab"></div><div class="track"><div class="zeroline" style="left:15.8%"></div><div class="bar" style="left:15.8%;width:64.3%;background:#1baf7a;opacity:.85"></div></div><div class="rval sub">+$764K</div></div>
+      <div class="row"><div class="rlab">$2.8M</div><div class="track"><div class="zeroline" style="left:15.8%"></div><div class="bar" style="left:15.8%;width:36.6%;background:#2a78d6"></div></div><div class="rval">+$436K</div></div>
+      <div class="row"><div class="rlab"></div><div class="track"><div class="zeroline" style="left:15.8%"></div><div class="bar" style="left:15.8%;width:48.5%;background:#1baf7a;opacity:.85"></div></div><div class="rval sub">+$576K</div></div>
+      <div class="row"><div class="rlab">$2.6M</div><div class="track"><div class="zeroline" style="left:15.8%"></div><div class="bar" style="left:15.8%;width:20.8%;background:#2a78d6"></div></div><div class="rval">+$248K</div></div>
+      <div class="row"><div class="rlab"></div><div class="track"><div class="zeroline" style="left:15.8%"></div><div class="bar" style="left:15.8%;width:32.6%;background:#1baf7a;opacity:.85"></div></div><div class="rval sub">+$388K</div></div>
+      <div class="row"><div class="rlab">$2.5M (base case)</div><div class="track"><div class="zeroline" style="left:15.8%"></div><div class="bar" style="left:15.8%;width:12.9%;background:#2a78d6"></div></div><div class="rval">+$154K</div></div>
+      <div class="row"><div class="rlab"></div><div class="track"><div class="zeroline" style="left:15.8%"></div><div class="bar" style="left:15.8%;width:24.7%;background:#1baf7a;opacity:.85"></div></div><div class="rval sub">+$294K</div></div>
+      <div class="row"><div class="rlab">$2.4M</div><div class="track"><div class="zeroline" style="left:15.8%"></div><div class="bar" style="left:15.8%;width:5.0%;background:#2a78d6"></div></div><div class="rval">+$60K</div></div>
+      <div class="row"><div class="rlab"></div><div class="track"><div class="zeroline" style="left:15.8%"></div><div class="bar" style="left:15.8%;width:16.8%;background:#1baf7a;opacity:.85"></div></div><div class="rval sub">+$200K</div></div>
+      <div class="row"><div class="rlab">$2.3M</div><div class="track"><div class="zeroline" style="left:15.8%"></div><div class="bar neg" style="left:12.9%;width:2.9%;background:#d03b3b"></div></div><div class="rval">−$34K</div></div>
+      <div class="row"><div class="rlab"></div><div class="track"><div class="zeroline" style="left:15.8%"></div><div class="bar" style="left:15.8%;width:8.9%;background:#1baf7a;opacity:.85"></div></div><div class="rval sub">+$106K</div></div>
+      <div class="row"><div class="rlab">$2.2M</div><div class="track"><div class="zeroline" style="left:15.8%"></div><div class="bar neg" style="left:5.0%;width:10.8%;background:#d03b3b"></div></div><div class="rval">−$128K</div></div>
+      <div class="row"><div class="rlab"></div><div class="track"><div class="zeroline" style="left:15.8%"></div><div class="bar" style="left:15.8%;width:1.0%;background:#1baf7a;opacity:.85"></div></div><div class="rval sub">+$12K</div></div>
+    </div>
+    <p class="small sub">Breakeven exit: <b>≈ $2.34M financed</b> · <b>≈ $2.19M all-cash</b>. The deal survives a sale 6%+ below the price that already failed — that is the true margin of safety.</p>
+  </div>
+</div>
+
+<!-- ============ PAGE 3 : MARKET ANALYSIS ============ -->
+<div class="page">
+  <div class="wrap" style="padding-top:28px">
+    <h2>2 · Market Analysis — Alpharetta / 30009, mid-2026</h2>
+    <div class="tiles">
+      <div class="tile"><div class="lab">Median sale (city)</div><div class="val">$724K</div><div class="note">Down 5.4% YoY (Mar 2026, Redfin)</div></div>
+      <div class="tile"><div class="lab">Days on market</div><div class="val">43</div><div class="note">vs 36 a year ago — slowing</div></div>
+      <div class="tile"><div class="lab">30009 new-const. listings</div><div class="val">89</div><div class="note">Median new-build list $867K</div></div>
+      <div class="tile"><div class="lab">This home, $/sq ft</div><div class="val">$355</div><div class="note">Buy basis vs $487 failed list</div></div>
+    </div>
+
+    <h3>What the tape says</h3>
+    <ul>
+      <li><b>The broad Alpharetta market is cooling, not crashing.</b> Median prices are off ~5% YoY with DOM stretching; well-priced homes in premium pockets still see competitive offers, but stale or aspirational pricing sits.</li>
+      <li><b>Downtown 30009 is the strongest micro-location in the city</b> — walkability to Main Street, Avalon proximity, the Alpha Loop, and top Fulton schools (Milton HS feeder pattern). New luxury projects (Ronara Villas, Mayfair on Main, Byers Park) are proving $1.6M+ demand steps from downtown, and they are also this flip's <i>direct competition</i>.</li>
+      <li><b>The $2.5M–$3M band in 30009 is thin.</b> Most volume clears below $1.6M; buyers at $2.5M+ compare against Milton estates on acreage. That means longer marketing time and appraisal risk at the top of the range.</li>
+      <li><b>This specific asset has price discovery already:</b> $2.695M (rejected) → $2.495M (rejected) → delisted → multiple relists. A stale, multi-MLS history means the buyer pool has seen it; the relaunch must look and feel like a different product (new photography, staging, completed punch list, fresh narrative).</li>
+    </ul>
+
+    <h3>ARV triangulation</h3>
+    <table>
+      <tr><th>Evidence</th><th class="num">Implied value</th><th>Weight</th></tr>
+      <tr><td>Failed list Aug–Sep 2025 ($2.495M, no takers)</td><td class="num">&lt; $2.50M</td><td>Ceiling evidence — strongest single data point</td></tr>
+      <tr><td>Market drift since (−5% city-wide, softer luxury DOM)</td><td class="num">$2.35–2.45M</td><td>Adjusts ceiling down</td></tr>
+      <tr><td>Completion of punch list / $173K scope + staging + relaunch</td><td class="num">+$100–150K vs 2025 showing</td><td>The 2025 listing likely showed unfinished</td></tr>
+      <tr><td>New-build $/sq ft for finished downtown luxury ($470–500)</td><td class="num">$2.40–2.56M</td><td>Sanity band on 5,120 sq ft</td></tr>
+      <tr class="total"><td>Underwriting ARV</td><td class="num">$2.45–2.55M</td><td>Use $2.5M base · $3.0M is not evidenced</td></tr>
+    </table>
+
+    <div class="verdict" style="margin-top:12px">
+      <b>Open question that decides the upside:</b> why does a 2025 build need $173K of work, and why would the seller
+      take $1.82M after listing at $2.495M ten months ago? The most likely answers — builder distress, unfinished
+      interior/CO not issued, or a wholesaler spread — each change the diligence list. If the house showed unfinished in
+      2025, the failed list price understates finished value and the true ARV may sit at the top of the band. Verify
+      before you rely on it.
+    </div>
+
+    <h3>Risk register</h3>
+    <table>
+      <tr><th>Risk</th><th>Level</th><th>Mitigation</th></tr>
+      <tr><td>ARV overstated ($3.0M claim vs $2.495M failed list)</td><td><span class="pill hi">High</span></td><td>Underwrite $2.5M; require CMA + walkthrough of active $2M+ 30009 comps before closing</td></tr>
+      <tr><td>Mechanic's liens / title from distressed builder</td><td><span class="pill md">Medium</span></td><td>Full title exam, lien waivers, owner's title policy; escrow holdback if open permits</td></tr>
+      <tr><td>Scope creep — "rehab" hides construction defects</td><td><span class="pill md">Medium</span></td><td>Independent GC + structural inspection; verify CO status and open permits with City of Alpharetta</td></tr>
+      <tr><td>Carry extension in a slowing market (DOM 43↑)</td><td><span class="pill md">Medium</span></td><td>Price at $2.475–2.55M day one; pre-agree price-cut cadence (21/45 days); 12-mo interest reserve</td></tr>
+      <tr><td>Stale-listing stigma (4+ MLS numbers)</td><td><span class="pill lo">Low-Med</span></td><td>Relaunch as finished product: staging, new media, twilight photos, launch event</td></tr>
+      <tr><td>Rate/appraisal risk for end buyer at $2.5M+</td><td><span class="pill lo">Low-Med</span></td><td>Jumbo buyers less rate-sensitive; keep comps package ready for appraiser</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============ PAGE 4 : STRATEGY ============ -->
+<div class="page">
+  <div class="wrap" style="padding-top:28px">
+    <h2>3 · Strategy &amp; Action Plan</h2>
+
+    <h3>Offer &amp; negotiation</h3>
+    <ul>
+      <li><b>Open at $1.65M, target ≤ $1.72M, walk above $1.82M.</b> Leverage: 13+ months of failed marketing, price cut, delist, multiple relists, −5% market, and your speed/certainty of close. Every $50K off entry ≈ $50K straight to profit and drops breakeven by ~$53K of exit price.</li>
+      <li><b>If the seller won't move on price, move on terms:</b> seller completes punch-list items or credits at closing; seller pays transfer costs; 45-day free look with access for contractors.</li>
+      <li><b>If this is a wholesaler assignment</b>, ask for the contract price. At a $1.82M ask against a probable sub-$1.7M contract, negotiate the spread or go direct after expiry.</li>
+    </ul>
+
+    <h3>Diligence checklist (before hard money, non-negotiable)</h3>
+    <ul class="steps">
+      <li><b>City of Alpharetta permits &amp; CO:</b> confirm certificate of occupancy status and any open/expired permits. If no CO, get a written path-to-CO estimate — this is where $173K becomes $300K.</li>
+      <li><b>Title &amp; liens:</b> full exam for mechanic's liens, materialman claims, builder LLC judgments; require lien waivers/affidavits at closing.</li>
+      <li><b>Independent scope validation:</b> your own GC bids the $173K scope line-by-line; structural + stucco/water-intrusion inspection on the new build (new ≠ sound).</li>
+      <li><b>ARV proof:</b> licensed agent CMA of 30009/Milton closed sales $2.2–3.0M (last 6 mo) + walk the active competition (Ronara Villas, Mayfair on Main).</li>
+      <li><b>Survey, HOA (if any), flood cert, insurance quote</b> before the diligence clock runs.</li>
+    </ul>
+
+    <h3>Exit strategy waterfall</h3>
+    <table>
+      <tr><th>Plan</th><th>Trigger</th><th>Outcome</th></tr>
+      <tr><td><b>A — Finish &amp; retail (primary)</b>: complete scope in 60–90 days, stage, relaunch at <b>$2,475,000–$2,550,000</b></td><td>Default path</td><td>Base case ~$154–300K financed profit; under-45-DOM pricing beats chasing $3.0M and sitting</td></tr>
+      <tr><td><b>B — Stretch price test</b>: launch at $2.65M only if 3+ closed comps ≥ $560/sq ft appear by completion</td><td>Comp evidence materializes</td><td>Upside toward $400–600K; pre-commit to cut to $2.525M at day 21 if showings &lt; 8/wk</td></tr>
+      <tr><td><b>C — Luxury lease fallback</b>: rent est. $9.5–11.5K/mo</td><td>No offers ≥ $2.35M by month 6</td><td>Rent does <b>not</b> cover hard-money debt (~$14K/mo) — refi to DSCR won't pencil. This is a bridge, not a business plan; budget a 12-month interest reserve instead</td></tr>
+      <tr><td><b>D — Wholetail</b>: light-clean and re-sell as-is to another investor/builder</td><td>Diligence finds defects but entry ≤ $1.70M</td><td>Exit $1.9–2.0M quickly; small profit, capital preserved</td></tr>
+    </table>
+
+    <h3 style="margin-top:10px">Execution calendar (8-month plan)</h3>
+    <table>
+      <tr><th>Phase</th><th>Weeks</th><th>Milestones</th></tr>
+      <tr><td>Contract &amp; diligence</td><td>0–4</td><td>Offer, title exam, permits/CO check, GC bids locked, appraisal/BPO</td></tr>
+      <tr><td>Close &amp; mobilize</td><td>4–6</td><td>Close, builder's-risk policy, permits transferred, contractors start</td></tr>
+      <tr><td>Completion work</td><td>6–18</td><td>$173K scope + punch list; weekly draw inspections; order staging</td></tr>
+      <tr><td>Relaunch</td><td>18–20</td><td>New photography/video, stage, list at $2.475–2.55M, broker open</td></tr>
+      <tr><td>Sell &amp; close</td><td>20–34</td><td>Target contract ≤ 45 DOM; appraisal comp package ready; close ~month 8</td></tr>
+    </table>
+
+    <div class="okbox" style="margin-top:12px">
+      <b>Bottom line.</b> Buy the discount, not the dream: at ≤ $1.72–1.82M entry this deal makes money at prices the
+      market has already proven, and the $3.0M claim becomes free upside instead of a requirement. If diligence surfaces
+      lien or CO problems that can't be priced in, walk — the entry discount is the entire thesis.
+    </div>
+
+    <div class="footer">
+      Sources: Redfin — 170 Michaela Dr &amp; Alpharetta market report · Zillow — property &amp; 30009 data · Movoto, Houzeo, Ansley RE, Homes.com listing records · Houzeo Alpharetta 2026 market report. Figures are estimates for decision support; obtain a licensed appraisal, inspection, and title exam before purchase. Prepared July 4, 2026.
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

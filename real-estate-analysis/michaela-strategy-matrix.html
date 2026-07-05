@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>170 Michaela Drive — Full Strategy Matrix</title>
+<style>
+  :root{
+    --surface:#fcfcfb; --page:#f9f9f7;
+    --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --axis:#c3c2b7; --border:rgba(11,11,11,0.10);
+    --s1:#2a78d6; --s2:#1baf7a; --s3:#eda100; --s6:#e34948;
+    --good:#0ca30c; --goodtext:#006300; --warn:#fab219; --critical:#d03b3b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  html,body{background:#fff;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:10.5pt;line-height:1.5}
+  .page{page-break-after:always}
+  .page:last-child{page-break-after:auto}
+  h1{font-size:21pt;font-weight:800;letter-spacing:-.02em}
+  h2{font-size:13.5pt;font-weight:700;margin:0 0 8px;letter-spacing:-.01em}
+  h3{font-size:10.5pt;font-weight:700;margin:0 0 4px}
+  p{margin:0 0 8px}
+  .sub{color:var(--ink2)} .mut{color:var(--muted)} .small{font-size:8.5pt}
+  .cover-band{background:#0d366b;color:#fff;padding:34px 40px 28px;border-radius:0 0 14px 14px}
+  .cover-band .kicker{font-size:9pt;letter-spacing:.14em;text-transform:uppercase;color:#9ec5f4;font-weight:700;margin-bottom:10px}
+  .cover-band h1{color:#fff;margin-bottom:6px}
+  .cover-band .addr{font-size:12pt;color:#cde2fb}
+  .wrap{padding:20px 40px}
+  .tiles{display:flex;gap:10px;margin:14px 0}
+  .tile{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+  .tile .lab{font-size:8pt;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:3px}
+  .tile .val{font-size:16pt;font-weight:800;letter-spacing:-.02em}
+  .tile .note{font-size:8pt;color:var(--ink2);margin-top:2px}
+  .verdict{border-left:4px solid var(--warn);background:#fdf6e6;border-radius:6px;padding:12px 16px;margin:12px 0}
+  .flag{border-left:4px solid var(--critical);background:#fbeeee;border-radius:6px;padding:12px 16px;margin:12px 0}
+  .okbox{border-left:4px solid var(--good);background:#eef7ee;border-radius:6px;padding:12px 16px;margin:12px 0}
+  table{width:100%;border-collapse:collapse;font-size:9.5pt}
+  th{font-size:8pt;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;padding:6px 8px;border-bottom:1.5px solid var(--axis)}
+  td{padding:5.5px 8px;border-bottom:1px solid var(--grid);vertical-align:top}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  tr.total td{font-weight:800;border-top:2px solid var(--axis);border-bottom:none}
+  tr.subtotal td{font-weight:700;background:#f4f3f0}
+  .two{display:flex;gap:18px}.two>div{flex:1}
+  .chart{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin:10px 0}
+  .chart .ct{font-size:9.5pt;font-weight:700;margin-bottom:2px}
+  .chart .cs{font-size:8pt;color:var(--muted);margin-bottom:10px}
+  .row{display:flex;align-items:center;margin:5px 0;gap:8px}
+  .row .rlab{width:170px;font-size:8.5pt;color:var(--ink2);text-align:right;flex:none}
+  .track{flex:1;position:relative;height:16px}
+  .bar{position:absolute;top:1px;height:14px;border-radius:0 4px 4px 0}
+  .bar.neg{border-radius:4px 0 0 4px}
+  .rval{width:150px;font-size:8.5pt;font-weight:700;flex:none;font-variant-numeric:tabular-nums}
+  .zeroline{position:absolute;top:-3px;bottom:-3px;width:1.5px;background:var(--axis)}
+  ul{margin:0 0 8px 18px}
+  li{margin-bottom:4px}
+  .grade{display:inline-block;font-weight:800;font-size:10pt;width:34px;height:24px;line-height:24px;text-align:center;border-radius:6px}
+  .gA{background:#dff0df;color:#006300}.gB{background:#e3edfa;color:#184f95}.gC{background:#fdf6e6;color:#8a5a00}.gD{background:#fbeeee;color:#a32e2e}
+  .pill{display:inline-block;font-size:7.5pt;font-weight:700;padding:1.5px 8px;border-radius:99px;letter-spacing:.04em;text-transform:uppercase}
+  .pill.hi{background:#fbeeee;color:var(--critical)} .pill.md{background:#fdf6e6;color:#8a5a00} .pill.lo{background:#eef7ee;color:var(--goodtext)}
+  .footer{margin-top:14px;padding-top:8px;border-top:1px solid var(--grid);font-size:7.5pt;color:var(--muted)}
+  table,.chart,.tiles,.verdict,.flag,.okbox,.row{break-inside:avoid}
+  h2,h3{break-after:avoid}
+  tr{break-inside:avoid}
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 : SCOREBOARD ============ -->
+<div class="page">
+  <div class="cover-band">
+    <div class="kicker">Full Strategy Test · Every Exit Modeled · July 4, 2026</div>
+    <h1>170 Michaela Drive — Strategy Matrix</h1>
+    <div class="addr">Alpharetta, GA 30009 · 6 bd / 5.5 ba · ~5,120 sq ft · Ask $1.82M · Completion $173K · Underwriting ARV $2.5M</div>
+  </div>
+  <div class="wrap">
+    <p class="sub">Seven exit strategies tested against the same asset, same entry ($1.82M ask), same conservative $2.5M finished value
+    (the $3.0M claim is treated as upside, per the companion deal-analysis report). Ranked by risk-adjusted return on <i>your</i> cash.</p>
+
+    <h3>The leaderboard</h3>
+    <table>
+      <tr><th></th><th>Strategy</th><th class="num">Est. profit</th><th class="num">Cash needed</th><th class="num">Cash-on-cash</th><th>Timeline</th><th>Call</th></tr>
+      <tr><td><span class="grade gA">A−</span></td><td><b>1 · Flip with seller financing</b></td><td class="num">≈ $185–215K</td><td class="num">≈ $400K</td><td class="num">≈ 45–50%</td><td>8 mo</td><td>Best structure if seller will carry</td></tr>
+      <tr><td><span class="grade gB">B+</span></td><td><b>2 · Fix &amp; flip, hard money</b> (base plan)</td><td class="num">≈ $154K <span class="mut">($624K @ $3.0M)</span></td><td class="num">≈ $567K</td><td class="num">≈ 27%</td><td>8 mo</td><td>Proven path; works today</td></tr>
+      <tr><td><span class="grade gB">B+</span></td><td><b>3 · Novation with the seller</b></td><td class="num">≈ $190K (60% split)</td><td class="num">≈ $215K</td><td class="num">≈ 88%</td><td>6–8 mo</td><td>Highest ROI; needs a willing, solvent seller</td></tr>
+      <tr><td><span class="grade gB">B</span></td><td><b>4 · Buy as personal residence</b></td><td class="num">≈ $400–500K equity</td><td class="num">≈ $420K down</td><td class="num">n/a</td><td>Immediate</td><td>Wildcard — instant equity at $355/sq ft</td></tr>
+      <tr><td><span class="grade gC">C</span></td><td><b>5 · Wholetail</b> (clean &amp; resell as-is)</td><td class="num">≈ $10–60K</td><td class="num">≈ $480K</td><td class="num">≈ 2–12%</td><td>3–4 mo</td><td>Only as a bail-out if diligence sours</td></tr>
+      <tr><td><span class="grade gC">C−</span></td><td><b>6 · Short-term rental (Airbnb)</b></td><td class="num">≈ $55K/yr NOI</td><td class="num">$2.15M+ tied up</td><td class="num">≈ 2.5% yield</td><td>Ongoing</td><td>Legal since Jan 2025, but yield doesn't work</td></tr>
+      <tr><td><span class="grade gD">D</span></td><td><b>7 · BRRRR / long-term rental</b></td><td class="num">≈ −$1.5 to −3K/mo</td><td class="num">≈ $590K trapped</td><td class="num">Negative</td><td>Ongoing</td><td>DSCR ≈ 0.86 — refi won't pencil. Kill</td></tr>
+      <tr><td><span class="grade gD">D</span></td><td><b>8 · Wholesale / assign the contract</b></td><td class="num">≈ $0 at $1.82M</td><td class="num">EMD only</td><td class="num">—</td><td>30–45 d</td><td>No honest spread unless you contract ≤$1.60M</td></tr>
+    </table>
+
+    <div class="okbox">
+      <b>Headline result.</b> This asset is a <b>seller — not a keeper</b>. Every hold strategy fails on yield (a $2.5M house
+      renting at ~$11K/mo is a ~3.5% cap against 7%+ debt), and every quick-exit strategy is squeezed by the thin honest
+      spread at a $1.82M entry. The money is in <b>finishing and retailing it</b> — and the structure you use to get there
+      (seller carry &gt; hard money &gt; novation, by fit) is worth $30–60K of extra profit and $150K+ of freed-up cash.
+    </div>
+
+    <div class="chart">
+      <div class="ct">Profit vs cash committed, by strategy (base case, $2.5M exit)</div>
+      <div class="cs">Bar = estimated net profit · label shows cash required. Rental strategies shown as first-year result.</div>
+      <!-- scale: -50K..250K, zero at 16.7% ; width = profit/300K*83.3% -->
+      <div class="row"><div class="rlab">Flip + seller financing</div><div class="track"><div class="zeroline" style="left:16.7%"></div><div class="bar" style="left:16.7%;width:55.5%;background:#1baf7a"></div></div><div class="rval">+$200K · $400K cash</div></div>
+      <div class="row"><div class="rlab">Novation (60/40 split)</div><div class="track"><div class="zeroline" style="left:16.7%"></div><div class="bar" style="left:16.7%;width:52.8%;background:#2a78d6"></div></div><div class="rval">+$190K · $215K cash</div></div>
+      <div class="row"><div class="rlab">Fix &amp; flip, hard money</div><div class="track"><div class="zeroline" style="left:16.7%"></div><div class="bar" style="left:16.7%;width:42.8%;background:#2a78d6"></div></div><div class="rval">+$154K · $567K cash</div></div>
+      <div class="row"><div class="rlab">Wholetail (mid)</div><div class="track"><div class="zeroline" style="left:16.7%"></div><div class="bar" style="left:16.7%;width:9.7%;background:#2a78d6"></div></div><div class="rval">+$35K · $480K cash</div></div>
+      <div class="row"><div class="rlab">STR year-1 NOI</div><div class="track"><div class="zeroline" style="left:16.7%"></div><div class="bar" style="left:16.7%;width:15.3%;background:#eda100"></div></div><div class="rval">+$55K/yr · $2.15M tied</div></div>
+      <div class="row"><div class="rlab">Wholesale @ $1.82M</div><div class="track"><div class="zeroline" style="left:16.7%"></div><div class="bar" style="left:16.7%;width:0.5%;background:#eda100"></div></div><div class="rval">≈ $0 · EMD only</div></div>
+      <div class="row"><div class="rlab">LTR / BRRRR year-1</div><div class="track"><div class="zeroline" style="left:16.7%"></div><div class="bar neg" style="left:8.4%;width:8.3%;background:#d03b3b"></div></div><div class="rval">−$30K/yr · $590K trapped</div></div>
+    </div>
+
+    <div class="footer">Prepared for Cleeford Faustin · Companion to "170 Michaela Drive — Deal Analysis" (Jul 4, 2026). Sources: Redfin/Zillow/Movoto/Houzeo listing records; Redfin &amp; Houzeo Alpharetta market reports; Rent.com/Homes.com Alpharetta rental data; City of Alpharetta STR Ordinance No. 881 (Jan 2025) via Lisa Shippel Law &amp; Appen Media. Estimates for decision support, not an appraisal.</div>
+  </div>
+</div>
+
+<!-- ============ PAGE 2 : HOLD STRATEGIES ============ -->
+<div class="page">
+  <div class="wrap" style="padding-top:28px">
+    <h2>1 · Hold strategies — tested and rejected</h2>
+
+    <div class="two">
+      <div>
+        <h3>Long-term rental / BRRRR <span class="grade gD" style="margin-left:6px">D</span></h3>
+        <table>
+          <tr><th>Line</th><th class="num">Value</th></tr>
+          <tr><td>Market rent (5,120 sq ft luxury, 30009)</td><td class="num">$10.5–12.5K/mo</td></tr>
+          <tr><td>Modeled rent / gross income</td><td class="num">$11,000 · $132K/yr</td></tr>
+          <tr><td>Vacancy 5% · mgmt 8% · maint/reserves</td><td class="num">−$23,100</td></tr>
+          <tr><td>Taxes (reassessed ~$2.4M) + insurance</td><td class="num">−$35,000</td></tr>
+          <tr class="subtotal"><td>NOI</td><td class="num">≈ $72K/yr</td></tr>
+          <tr><td>Cap rate on $2.06M basis</td><td class="num">≈ 3.5%</td></tr>
+          <tr><td>DSCR refi @ 75% LTV, 7.25%/30yr — payment</td><td class="num">≈ $12.8K/mo</td></tr>
+          <tr class="total"><td>DSCR = rent ÷ payment</td><td class="num">≈ 0.86 — FAILS</td></tr>
+        </table>
+        <p class="small sub" style="margin-top:6px">A DSCR lender sizing to 1.1× caps the loan near <b>$1.47M</b>, trapping
+        ≈ <b>$590K</b> of your capital and still leaving the property roughly <b>$1.5–3K/mo negative</b> after full expenses.
+        The BRRRR "infinite return" mechanic is mathematically unavailable here — luxury SFRs don't rent in proportion to
+        their value.</p>
+      </div>
+      <div>
+        <h3>Short-term rental (Airbnb/VRBO) <span class="grade gC" style="margin-left:6px">C−</span></h3>
+        <table>
+          <tr><th>Line</th><th class="num">Value</th></tr>
+          <tr><td>ADR est. (6BR luxury, Avalon/downtown draw)</td><td class="num">$650–900</td></tr>
+          <tr><td>Occupancy est.</td><td class="num">~55%</td></tr>
+          <tr><td>Gross revenue</td><td class="num">≈ $140K/yr</td></tr>
+          <tr><td>Mgmt 18% · utilities · supplies · STR insurance</td><td class="num">−$56,000</td></tr>
+          <tr><td>Taxes + license/fees</td><td class="num">−$29,000</td></tr>
+          <tr class="subtotal"><td>NOI</td><td class="num">≈ $55K/yr</td></tr>
+          <tr><td>Furnishing capex (one-time)</td><td class="num">−$80–100K</td></tr>
+          <tr class="total"><td>Yield on ~$2.15M all-in</td><td class="num">≈ 2.5%</td></tr>
+        </table>
+        <p class="small sub" style="margin-top:6px"><b>Regulatory reality (Ordinance No. 881, in force since Jan 2025):</b>
+        STRs are legal in Alpharetta single-family homes with an annual city license — but licenses are capped at
+        <b>5% of homes per neighborhood</b>, <b>no two STRs may be adjacent on the same street</b>, 8% lodging tax applies,
+        parking must be 1 off-street space per bedroom, and renewals are due each Jan 31. Your license is therefore
+        <b>not guaranteed</b> — and a $2.15M asset earning ~2.5% doesn't justify the operational load even if granted.</p>
+      </div>
+    </div>
+
+    <div class="flag">
+      <b>Why holds fail here in one sentence:</b> rent scales with bedrooms, but this asset's value scales with finish
+      and location — so at $2.5M of value and ~$132K of achievable rent, every hold structure is buying a bond that
+      yields less than its own debt costs.
+    </div>
+
+    <h3>Personal residence wildcard <span class="grade gB" style="margin-left:6px">B</span></h3>
+    <p class="small">If you (or a buyer in your network) want to <i>live</i> in downtown Alpharetta: buying at $1.82M + $173K completion
+    = <b>$1.99M basis on a home worth ~$2.4–2.55M finished</b> — roughly <b>$400–500K of move-in equity</b>, top Fulton
+    schools (Milton HS feeder), walkable to Main Street and the Alpha Loop. A 20% jumbo down (~$420K including completion cash)
+    at today's rates carries it for roughly what a comparable rental would cost, with the equity as the prize. This is the one
+    "hold" that works, because it's priced against comps, not cap rates.</p>
+  </div>
+</div>
+
+<!-- ============ PAGE 3 : QUICK EXITS ============ -->
+<div class="page">
+  <div class="wrap" style="padding-top:28px">
+    <h2>2 · Quick-exit strategies — the spread test</h2>
+
+    <div class="two">
+      <div>
+        <h3>Wholesale / assignment <span class="grade gD" style="margin-left:6px">D</span></h3>
+        <p class="small">An end flipper underwriting honestly (72–75% of a $2.5M ARV, minus $173K completion) can pay at most
+        <b>≈ $1.63–1.70M</b>. Your ask is $1.82M — there is <b>no assignable spread at these numbers</b>. A wholesale deal here
+        only "works" by selling the $3.0M ARV story to a less-informed buyer, which risks blown closings and your reputation.</p>
+        <table>
+          <tr><th>End-buyer math</th><th class="num">Value</th></tr>
+          <tr><td>73% × $2.5M ARV − $173K rehab</td><td class="num">$1,652,000</td></tr>
+          <tr><td>Your contract price needed for a $75K fee</td><td class="num">≤ $1,577,000</td></tr>
+          <tr class="total"><td>Verdict at $1.82M ask</td><td class="num">No spread</td></tr>
+        </table>
+        <p class="small sub" style="margin-top:6px">Revisit only if the seller capitulates below ~$1.60M — then a $50–90K
+        assignment to a luxury builder/flipper becomes clean and honest.</p>
+      </div>
+      <div>
+        <h3>Wholetail <span class="grade gC" style="margin-left:6px">C</span></h3>
+        <p class="small">Buy, spend ~$15K on cleanup/staging only, resell as-is (unfinished) at $1.95–2.05M to an
+        owner-occupant who'll finish it their way, or a builder.</p>
+        <table>
+          <tr><th>Scenario (3–4 mo)</th><th class="num">Net profit</th></tr>
+          <tr><td>Resale $1.95M (6% sale costs, cash purchase)</td><td class="num">≈ +$8K</td></tr>
+          <tr><td>Resale $2.00M</td><td class="num">≈ +$35K</td></tr>
+          <tr><td>Resale $2.05M</td><td class="num">≈ +$60K</td></tr>
+          <tr class="total"><td>If entry negotiated to $1.70M, resale $2.0M</td><td class="num">≈ +$150K</td></tr>
+        </table>
+        <p class="small sub" style="margin-top:6px">Real role: the <b>capital-preservation bail-out</b> if post-closing
+        diligence surfaces problems that make the full completion unattractive. Not the primary plan.</p>
+      </div>
+    </div>
+
+    <div class="two" style="margin-top:8px">
+      <div>
+        <h3>Novation agreement <span class="grade gB" style="margin-left:6px">B+</span></h3>
+        <p class="small">Don't buy it — partner with the seller: you fund the $173K completion + staging + carry (~$215K total),
+        control the listing, and split everything above the seller's $1.82M floor.</p>
+        <table>
+          <tr><th>Waterfall @ $2.5M sale</th><th class="num">Value</th></tr>
+          <tr><td>Net after 6% sale costs</td><td class="num">$2,350,000</td></tr>
+          <tr><td>Less seller floor ($1.82M) + your costs (~$215K)</td><td class="num">$315,000 pool</td></tr>
+          <tr class="total"><td>Your 60% of pool → return on $215K</td><td class="num">≈ $190K · ~88% CoC</td></tr>
+        </table>
+        <p class="small sub" style="margin-top:6px">No acquisition closing costs, no hard-money points, no transfer tax — the
+        highest ROI structure tested. Requires a solvent, cooperative seller, ironclad written agreement (memorandum recorded,
+        funds through escrow, deed-in-escrow or performance mortgage as security), and clean title. If the seller is a
+        distressed builder LLC, this is often exactly what they want.</p>
+      </div>
+      <div>
+        <h3>Flip with seller financing <span class="grade gA" style="margin-left:6px">A−</span></h3>
+        <p class="small">Trade price for terms: offer <b>$1.87M with the seller carrying 90% at 6% interest-only, 12-month
+        balloon</b>. Versus hard money you skip ~$33K in points and save ~4.5% in rate — worth ≈ <b>$80K</b> against a $50K
+        price concession.</p>
+        <table>
+          <tr><th>@ $2.5M exit, 8-mo hold</th><th class="num">Value</th></tr>
+          <tr><td>Financing cost (6% IO on $1.68M, 8 mo)</td><td class="num">≈ $67K vs $141K HM</td></tr>
+          <tr><td>Net profit</td><td class="num">≈ $185–215K</td></tr>
+          <tr class="total"><td>Cash required / cash-on-cash</td><td class="num">≈ $400K · ~45–50%</td></tr>
+        </table>
+        <p class="small sub" style="margin-top:6px">A distressed seller who already carried this house for a year often
+        prefers a strong down payment + short note at a <i>higher headline price</i> over another $50K price cut. Pitch both:
+        "$1.70M cash, or $1.87M on terms."</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:10px">Decision tree — what to actually do</h3>
+    <table>
+      <tr><th>If…</th><th>Then…</th></tr>
+      <tr><td>Seller will carry paper (ask first)</td><td><b>Flip w/ seller financing</b> at ≤$1.87M on terms → ~$200K, half the cash of hard money</td></tr>
+      <tr><td>Seller wants all cash, will take ≤$1.82M</td><td><b>Hard-money flip</b> (base plan from the deal-analysis report) → ~$154K base, $624K if the $3.0M story proves</td></tr>
+      <tr><td>Seller won't sell at a workable price but is stuck</td><td>Pitch a <b>novation</b>: their floor stays $1.82M, you take 60% of everything above</td></tr>
+      <tr><td>Diligence finds CO/lien/defect problems after you own it</td><td><b>Wholetail out</b> at $1.95–2.05M; preserve capital</td></tr>
+      <tr><td>You can contract below ~$1.60M</td><td>Optional <b>wholesale</b> for a fast $50–90K, or keep it — the flip margin is fat at that entry</td></tr>
+      <tr><td>Someone in the family wants to live in Alpharetta</td><td><b>Buy it as a residence</b> — ~$400–500K of instant equity is the quiet winner</td></tr>
+      <tr><td>Anyone proposes renting it, long- or short-term</td><td>Decline — DSCR 0.86 and a 2.5% STR yield are the math's final answer</td></tr>
+    </table>
+
+    <div class="okbox" style="margin-top:10px">
+      <b>Bottom line across all eight tests.</b> 170 Michaela is a <b>finish-and-sell asset</b>. Lead with the seller-financing
+      offer, fall back to the hard-money flip, keep novation in your pocket for a stuck seller, and use wholetail as the
+      parachute. Every rental path destroys value at this price point — and an honest wholesale spread doesn't exist above
+      a $1.60M contract.
+    </div>
+
+    <div class="footer">Sources: Redfin — 170 Michaela Dr &amp; Alpharetta market · Zillow · Movoto · Houzeo · Rent.com &amp; Homes.com Alpharetta rentals · City of Alpharetta STR Ordinance No. 881 (Lisa Shippel Law; Appen Media; STR Profit Map). Rent, ADR, tax, and rate figures are estimates — verify with local property managers, the City of Alpharetta, and your lender before committing capital. Prepared July 4, 2026.</div>
+  </div>
+</div>
+
+</body>
+</html>
