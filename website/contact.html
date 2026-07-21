@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Everbright Cards</title>
+  <meta name="description" content="Get in touch with Everbright Cards — questions, wholesale inquiries, shipping help, and more." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23d96c47%22/><text x=%2250%22 y=%2268%22 font-size=%2255%22 text-anchor=%22middle%22 fill=%22white%22>✉</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-mark">✉</span> Everbright Cards</a>
+      <nav class="main-nav" id="main-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop Cards</a>
+        <a href="about.html">Our Story</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+      <div style="display:flex; align-items:center; gap:0.8rem;">
+        <button class="cart-button" onclick="openCart()">Cart <span class="cart-count">0</span></button>
+        <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.getElementById('main-nav').classList.toggle('open')">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Get in touch</span>
+      <h1>We'd love to hear from you</h1>
+      <p>Questions about an order, wholesale inquiries, or ideas for a card you wish existed — drop us a line.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 1.5rem;">
+    <div class="container contact-grid">
+      <div>
+        <div class="contact-info-card">
+          <h3>📍 Visit the studio</h3>
+          <p>418 Alder Street<br />Portland, OR 97204<br />Open Tue–Sat, 10am–5pm</p>
+        </div>
+        <div class="contact-info-card">
+          <h3>✉️ Email us</h3>
+          <p>hello@everbrightcards.example<br />We reply within one business day.</p>
+        </div>
+        <div class="contact-info-card">
+          <h3>📞 Call us</h3>
+          <p>(503) 555-0142<br />Mon–Fri, 9am–4pm PT</p>
+        </div>
+        <div class="contact-info-card">
+          <h3>🏪 Wholesale</h3>
+          <p>Stocking Everbright in your shop? Choose "Wholesale" in the form and we'll send our catalog and terms.</p>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contact-form">
+        <div class="form-success" id="contact-success">✅ Thanks for reaching out! We'll get back to you within one business day.</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="topic">What's this about?</label>
+          <select id="topic" name="topic">
+            <option value="order">An order</option>
+            <option value="wholesale">Wholesale</option>
+            <option value="custom">Custom cards</option>
+            <option value="press">Press</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" required placeholder="Tell us what's on your mind…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send message</button>
+        <p class="form-note">This demo form doesn't send anywhere yet — connect it to your email service or backend of choice.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="section" id="faq" style="background: #f3ede2;">
+    <div class="container">
+      <div style="text-align:center;">
+        <span class="eyebrow">Good to know</span>
+        <h2 class="section-title">Frequently asked questions</h2>
+        <p class="section-sub" style="margin-left:auto; margin-right:auto;">Quick answers to the things we get asked most.</p>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>How fast do orders ship?</summary>
+          <div class="faq-body">Orders placed before 2pm PT leave our Portland studio the same business day; everything else ships the next. Standard delivery takes 3–5 business days within the US.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Are the cards blank inside?</summary>
+          <div class="faq-body">Yes — every card is blank inside so the words can be yours. Each one comes with a matching envelope in recycled kraft or ivory.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do you offer wholesale pricing?</summary>
+          <div class="faq-body">We do! We partner with independent shops across the country. Send us a note with "Wholesale" selected in the form above and we'll share our catalog, pricing, and minimums.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What is your return policy?</summary>
+          <div class="faq-body">If your order arrives damaged or isn't what you expected, email us within 30 days and we'll replace it or refund you — no need to send anything back.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Can I request a custom design?</summary>
+          <div class="faq-body">For weddings, events, and businesses we offer custom runs starting at 50 cards. Choose "Custom cards" in the contact form and tell us about your project.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo" style="color: var(--cream);"><span class="logo-mark">✉</span> Everbright Cards</a>
+          <p>Original greeting cards, designed and letterpress-printed in Portland, Oregon since 2018.</p>
+        </div>
+        <div>
+          <h3>Shop</h3>
+          <ul>
+            <li><a href="shop.html?category=birthday">Birthday</a></li>
+            <li><a href="shop.html?category=love">Love &amp; Anniversary</a></li>
+            <li><a href="shop.html?category=holiday">Holiday</a></li>
+            <li><a href="shop.html?category=boxset">Box Sets</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Company</h3>
+          <ul>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="about.html#values">Values</a></li>
+            <li><a href="about.html#team">Team</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Help</h3>
+          <ul>
+            <li><a href="contact.html#faq">FAQ</a></li>
+            <li><a href="contact.html">Shipping &amp; Returns</a></li>
+            <li><a href="contact.html">Wholesale</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Everbright Cards. All rights reserved.</span>
+        <span>Made with 💛 and recycled paper in Portland, OR</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping cart">
+    <div class="cart-header">
+      <h2>Your cart</h2>
+      <button class="cart-close" aria-label="Close cart" onclick="closeCart()">×</button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total-row"><span>Total</span><span id="cart-total">$0.00</span></div>
+      <button class="btn btn-primary" onclick="checkout()">Checkout</button>
+    </div>
+  </aside>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

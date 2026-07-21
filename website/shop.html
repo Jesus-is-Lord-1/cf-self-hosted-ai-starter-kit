@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop Cards — Everbright Cards</title>
+  <meta name="description" content="Browse the full Everbright Cards collection — birthday, love, thank you, holiday, sympathy, and more. Original art on recycled paper." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23d96c47%22/><text x=%2250%22 y=%2268%22 font-size=%2255%22 text-anchor=%22middle%22 fill=%22white%22>✉</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-mark">✉</span> Everbright Cards</a>
+      <nav class="main-nav" id="main-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html" class="active">Shop Cards</a>
+        <a href="about.html">Our Story</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div style="display:flex; align-items:center; gap:0.8rem;">
+        <button class="cart-button" onclick="openCart()">Cart <span class="cart-count">0</span></button>
+        <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.getElementById('main-nav').classList.toggle('open')">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">The collection</span>
+      <h1>Shop all cards</h1>
+      <p>Every card is blank inside, comes with a matching envelope, and is printed on 100% recycled cotton paper.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 1rem;">
+    <div class="container">
+      <div class="shop-controls">
+        <button class="filter-btn active" data-category="all">All</button>
+        <button class="filter-btn" data-category="birthday">Birthday</button>
+        <button class="filter-btn" data-category="love">Love &amp; Anniversary</button>
+        <button class="filter-btn" data-category="thankyou">Thank You</button>
+        <button class="filter-btn" data-category="holiday">Holiday</button>
+        <button class="filter-btn" data-category="congrats">Congrats</button>
+        <button class="filter-btn" data-category="baby">New Baby</button>
+        <button class="filter-btn" data-category="sympathy">Sympathy</button>
+        <button class="filter-btn" data-category="boxset">Box Sets</button>
+        <input type="search" class="search-input" id="shop-search" placeholder="Search cards…" aria-label="Search cards" />
+      </div>
+      <p style="color: var(--ink-soft); font-size: 0.9rem; margin-bottom: 1.2rem;">Showing <span id="shop-count"></span></p>
+      <div class="product-grid" id="product-grid"></div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo" style="color: var(--cream);"><span class="logo-mark">✉</span> Everbright Cards</a>
+          <p>Original greeting cards, designed and letterpress-printed in Portland, Oregon since 2018.</p>
+        </div>
+        <div>
+          <h3>Shop</h3>
+          <ul>
+            <li><a href="shop.html?category=birthday">Birthday</a></li>
+            <li><a href="shop.html?category=love">Love &amp; Anniversary</a></li>
+            <li><a href="shop.html?category=holiday">Holiday</a></li>
+            <li><a href="shop.html?category=boxset">Box Sets</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Company</h3>
+          <ul>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="about.html#values">Values</a></li>
+            <li><a href="about.html#team">Team</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Help</h3>
+          <ul>
+            <li><a href="contact.html#faq">FAQ</a></li>
+            <li><a href="contact.html">Shipping &amp; Returns</a></li>
+            <li><a href="contact.html">Wholesale</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Everbright Cards. All rights reserved.</span>
+        <span>Made with 💛 and recycled paper in Portland, OR</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping cart">
+    <div class="cart-header">
+      <h2>Your cart</h2>
+      <button class="cart-close" aria-label="Close cart" onclick="closeCart()">×</button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total-row"><span>Total</span><span id="cart-total">$0.00</span></div>
+      <button class="btn btn-primary" onclick="checkout()">Checkout</button>
+    </div>
+  </aside>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
