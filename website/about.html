@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Story — Everbright Cards</title>
+  <meta name="description" content="The story behind Everbright Cards — an independent Portland studio making greeting cards worth keeping since 2018." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23d96c47%22/><text x=%2250%22 y=%2268%22 font-size=%2255%22 text-anchor=%22middle%22 fill=%22white%22>✉</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-mark">✉</span> Everbright Cards</a>
+      <nav class="main-nav" id="main-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop Cards</a>
+        <a href="about.html" class="active">Our Story</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div style="display:flex; align-items:center; gap:0.8rem;">
+        <button class="cart-button" onclick="openCart()">Cart <span class="cart-count">0</span></button>
+        <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.getElementById('main-nav').classList.toggle('open')">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Our story</span>
+      <h1>Cards worth keeping, made by hand</h1>
+      <p>We believe a great card outlives the moment it marks. That belief has guided everything we've made since 2018.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 1.5rem;">
+    <div class="container about-grid">
+      <div class="about-art" aria-hidden="true">💌</div>
+      <div class="about-copy">
+        <span class="eyebrow">How it started</span>
+        <h2>A letterpress in a garage</h2>
+        <p>Everbright Cards began in a Portland garage with a secondhand letterpress, a stack of recycled paper, and one stubborn idea: greeting cards should feel as meaningful as the words written inside them.</p>
+        <p>Founder June Okafor had spent years watching beautiful moments get marked with forgettable cards. So she started drawing her own — pressing each one by hand, listing them at a neighborhood market, and selling out by noon.</p>
+        <p>Eight years later, we're a team of twelve working with independent illustrators across the country. Every card is still printed in Portland, still on recycled cotton paper, and still made to be kept.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="values" style="background: #f3ede2;">
+    <div class="container">
+      <span class="eyebrow">What we stand for</span>
+      <h2 class="section-title">Our values</h2>
+      <p class="section-sub">Three commitments shape every card that leaves our studio.</p>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="val-emoji">🎨</div>
+          <h3>Art first</h3>
+          <p>Every design is original artwork by an independent illustrator, who earns a royalty on every single card sold.</p>
+        </div>
+        <div class="value-card">
+          <div class="val-emoji">🌱</div>
+          <h3>Planet friendly</h3>
+          <p>100% recycled cotton paper, soy-based inks, plastic-free packaging, and carbon-neutral shipping on every order.</p>
+        </div>
+        <div class="value-card">
+          <div class="val-emoji">🤝</div>
+          <h3>Community rooted</h3>
+          <p>We donate 1% of every sale to local literacy programs, because words matter — on paper and everywhere else.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="team">
+    <div class="container">
+      <span class="eyebrow">The people behind the paper</span>
+      <h2 class="section-title">Meet the team</h2>
+      <p class="section-sub">A small crew of printers, painters, and paper obsessives.</p>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar" style="background: var(--terracotta);">🖋️</div>
+          <h3>June Okafor</h3>
+          <p>Founder &amp; Creative Director</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar" style="background: var(--sage-dark);">🖨️</div>
+          <h3>Marcus Lee</h3>
+          <p>Head of Print Production</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar" style="background: var(--plum);">🎨</div>
+          <h3>Sofia Reyes</h3>
+          <p>Lead Illustrator</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar" style="background: var(--gold);">📦</div>
+          <h3>Theo Nguyen</h3>
+          <p>Operations &amp; Shipping</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="cta-band">
+        <div>
+          <h2>Come say hello</h2>
+          <p>Questions, wholesale inquiries, or just want to talk paper? We'd love to hear from you.</p>
+        </div>
+        <a href="contact.html" class="btn" style="background: var(--ink); color: var(--cream);">Contact us</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo" style="color: var(--cream);"><span class="logo-mark">✉</span> Everbright Cards</a>
+          <p>Original greeting cards, designed and letterpress-printed in Portland, Oregon since 2018.</p>
+        </div>
+        <div>
+          <h3>Shop</h3>
+          <ul>
+            <li><a href="shop.html?category=birthday">Birthday</a></li>
+            <li><a href="shop.html?category=love">Love &amp; Anniversary</a></li>
+            <li><a href="shop.html?category=holiday">Holiday</a></li>
+            <li><a href="shop.html?category=boxset">Box Sets</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Company</h3>
+          <ul>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="about.html#values">Values</a></li>
+            <li><a href="about.html#team">Team</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Help</h3>
+          <ul>
+            <li><a href="contact.html#faq">FAQ</a></li>
+            <li><a href="contact.html">Shipping &amp; Returns</a></li>
+            <li><a href="contact.html">Wholesale</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Everbright Cards. All rights reserved.</span>
+        <span>Made with 💛 and recycled paper in Portland, OR</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping cart">
+    <div class="cart-header">
+      <h2>Your cart</h2>
+      <button class="cart-close" aria-label="Close cart" onclick="closeCart()">×</button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total-row"><span>Total</span><span id="cart-total">$0.00</span></div>
+      <button class="btn btn-primary" onclick="checkout()">Checkout</button>
+    </div>
+  </aside>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

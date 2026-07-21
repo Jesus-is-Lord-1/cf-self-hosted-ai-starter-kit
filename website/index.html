@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Everbright Cards — Greeting Cards Worth Keeping</title>
+  <meta name="description" content="Everbright Cards designs and prints beautiful greeting cards for birthdays, holidays, love notes, and every moment worth marking." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23d96c47%22/><text x=%2250%22 y=%2268%22 font-size=%2255%22 text-anchor=%22middle%22 fill=%22white%22>✉</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-mark">✉</span> Everbright Cards</a>
+      <nav class="main-nav" id="main-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="shop.html">Shop Cards</a>
+        <a href="about.html">Our Story</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div style="display:flex; align-items:center; gap:0.8rem;">
+        <button class="cart-button" onclick="openCart()">Cart <span class="cart-count">0</span></button>
+        <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.getElementById('main-nav').classList.toggle('open')">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <span class="eyebrow">Handcrafted greeting cards</span>
+        <h1>Say it beautifully, <em>keep it forever</em>.</h1>
+        <p class="lead">Everbright Cards designs and letterpress-prints greeting cards for the moments that matter — birthdays, love notes, thank-yous, and everything in between. Recycled paper, original artwork, real feelings.</p>
+        <div class="hero-actions">
+          <a href="shop.html" class="btn btn-primary">Shop the collection</a>
+          <a href="about.html" class="btn btn-outline">Our story</a>
+        </div>
+      </div>
+      <div class="hero-cards" aria-hidden="true">
+        <div class="hero-card hero-card-1"><span class="card-emoji">🎂</span>Happy<br>Birthday!</div>
+        <div class="hero-card hero-card-2"><span class="card-emoji">💌</span>Ever<br>Yours</div>
+        <div class="hero-card hero-card-3"><span class="card-emoji">🌻</span>Thank<br>You</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust bar -->
+  <div class="trust-bar">
+    <div class="container trust-items">
+      <span>🌱 100% recycled cotton paper</span>
+      <span>🎨 Original art by independent illustrators</span>
+      <span>📦 Free shipping over $25</span>
+      <span>💛 50,000+ happy senders</span>
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Browse by occasion</span>
+      <h2 class="section-title">A card for every moment</h2>
+      <p class="section-sub">From milestone birthdays to quiet thank-yous, every design is drawn by hand and printed with care in our Portland studio.</p>
+      <div class="category-grid">
+        <a class="category-card" href="shop.html?category=birthday">
+          <div class="cat-emoji">🎂</div>
+          <h3>Birthday</h3>
+          <p>Celebrate every trip around the sun</p>
+        </a>
+        <a class="category-card" href="shop.html?category=love">
+          <div class="cat-emoji">💌</div>
+          <h3>Love &amp; Anniversary</h3>
+          <p>For the ones who have your heart</p>
+        </a>
+        <a class="category-card" href="shop.html?category=thankyou">
+          <div class="cat-emoji">🌻</div>
+          <h3>Thank You</h3>
+          <p>Gratitude, beautifully put</p>
+        </a>
+        <a class="category-card" href="shop.html?category=holiday">
+          <div class="cat-emoji">🎄</div>
+          <h3>Holiday</h3>
+          <p>Season's greetings and cheer</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured products -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <span class="eyebrow">Customer favorites</span>
+      <h2 class="section-title">Bestsellers this month</h2>
+      <p class="section-sub">The cards our customers keep coming back for.</p>
+      <div class="product-grid" id="featured-grid"></div>
+      <div style="text-align:center; margin-top: 2.2rem;">
+        <a href="shop.html" class="btn btn-outline">View all cards</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section" style="background: #f3ede2;">
+    <div class="container">
+      <span class="eyebrow">How it works</span>
+      <h2 class="section-title">From our studio to their mailbox</h2>
+      <p class="section-sub">Sending something meaningful shouldn't be complicated.</p>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Pick your card</h3>
+          <p>Browse dozens of original designs for every occasion, each printed on thick, textured recycled paper.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>Make it yours</h3>
+          <p>Every card comes blank inside with a matching envelope — the words are all yours. Sets and singles available.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>We ship it fast</h3>
+          <p>Orders leave our Portland studio within one business day, in plastic-free packaging that's kind to the planet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Kind words</span>
+      <h2 class="section-title">Loved by senders everywhere</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <blockquote>"The paper quality is unreal — these feel like little pieces of art. My sister framed the birthday card I sent her."</blockquote>
+          <cite>— Maya R., Austin, TX</cite>
+        </div>
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <blockquote>"I ordered the Everyday Box Set and I'm never scrambling for a card again. Beautiful designs, fast shipping."</blockquote>
+          <cite>— Daniel K., Chicago, IL</cite>
+        </div>
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Their sympathy cards say what's hard to say, gently. Thank you for making something so thoughtful."</blockquote>
+          <cite>— Priya S., Seattle, WA</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="cta-band">
+        <div>
+          <h2>Join the Everbright post</h2>
+          <p>New designs, studio stories, and 10% off your first order.</p>
+        </div>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email address" required aria-label="Email address" />
+          <button type="submit" class="btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo" style="color: var(--cream);"><span class="logo-mark">✉</span> Everbright Cards</a>
+          <p>Original greeting cards, designed and letterpress-printed in Portland, Oregon since 2018.</p>
+        </div>
+        <div>
+          <h3>Shop</h3>
+          <ul>
+            <li><a href="shop.html?category=birthday">Birthday</a></li>
+            <li><a href="shop.html?category=love">Love &amp; Anniversary</a></li>
+            <li><a href="shop.html?category=holiday">Holiday</a></li>
+            <li><a href="shop.html?category=boxset">Box Sets</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Company</h3>
+          <ul>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="about.html#values">Values</a></li>
+            <li><a href="about.html#team">Team</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Help</h3>
+          <ul>
+            <li><a href="contact.html#faq">FAQ</a></li>
+            <li><a href="contact.html">Shipping &amp; Returns</a></li>
+            <li><a href="contact.html">Wholesale</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Everbright Cards. All rights reserved.</span>
+        <span>Made with 💛 and recycled paper in Portland, OR</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart drawer -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping cart">
+    <div class="cart-header">
+      <h2>Your cart</h2>
+      <button class="cart-close" aria-label="Close cart" onclick="closeCart()">×</button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total-row"><span>Total</span><span id="cart-total">$0.00</span></div>
+      <button class="btn btn-primary" onclick="checkout()">Checkout</button>
+    </div>
+  </aside>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
